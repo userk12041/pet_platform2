@@ -40,9 +40,15 @@
             nickname = #{nickname}
         WHERE user_id = #{user_id}
     </update>
-<!-- 회원 탈퇴 -->
-<delete id="deleteUser" parameterType="String">
-    DELETE FROM users WHERE user_id = #{userId}
-</delete>
+	<!-- 회원 탈퇴 -->
+	<delete id="deleteUser" parameterType="String">
+	    DELETE FROM users WHERE user_id = #{userId}
+	</delete>
+	
+	<!--test-->
+	<select id="getAllUsers" resultType="com.boot.dto.UserDTO">
+		 SELECT user_id, user_name, email, phone_number, address, nickname
+        FROM users
+	</select>
 
 </mapper>
