@@ -2,6 +2,7 @@ package com.boot.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.boot.dto.UserDTO;
 
@@ -15,5 +16,8 @@ public interface UserService {
     public int idCheck(String user_id);
     public int nickCheck(String nick);
 	void deleteUser(String userId);
+	
+	//test
+	List<UserDTO> getAllUsers();
 
 }

@@ -2,6 +2,7 @@ package com.boot.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.boot.dto.UserDTO;
 
@@ -15,4 +16,7 @@ public interface UserDAO {
 
     // 🔥 회원탈퇴 메서드 추가
     void deleteUser(String userId);
+    
+    //test
+    public List<UserDTO> getAllUsers();
 }
