@@ -36,7 +36,7 @@ public class PetController {
         return "redirect:/pet/list";
     }
 
-//    // 전체 펫 목록 보기 - 관리자
+//    // 전체 펫 목록 보기 - 관리자 2
 //    @GetMapping("/list")
 //    public String listPets(Model model) {
 //        List<PetDTO> pets = petService.getAllPets();
