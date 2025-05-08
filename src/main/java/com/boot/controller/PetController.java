@@ -1,7 +1,9 @@
 package com.boot.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -115,7 +117,9 @@ public class PetController {
     public String beautyReservation(@RequestParam int petId,
                                     @RequestParam String weight,
                                     @RequestParam String style,
-                                    @RequestParam String note) {
+                                    @RequestParam String note,
+                                    @RequestParam String reservationDay,
+                                    @RequestParam String reservationTime) {
 
         PetDTO pet = petService.getPetById(petId);
 
@@ -128,8 +132,24 @@ public class PetController {
         reservation.setWeight(Double.parseDouble(weight));  // ← 숫자형이면 변환
         reservation.setStyle(style);
         reservation.setNote(note);
+        
+     // String -> Date 변환 (예약 날짜만)
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date resDay = (Date) dateFormat.parse(reservationDay);
+            reservation.setReservationDay(resDay);
+        } catch (ParseException e) {
+            e.printStackTrace();  // 에러 처리
+        }
 
+        // 시간은 문자열 그대로
+        reservation.setReservationTime(reservationTime);
+
+//        reservation.setReservedAt(new java.sql.Date(System.currentTimeMillis())); //날짜
+        reservation.setReservedAt(new java.sql.Timestamp(System.currentTimeMillis())); //날짜+시간
+        
         petService.beautyReservation(reservation);
+        
 
         return "redirect:/main";
     }

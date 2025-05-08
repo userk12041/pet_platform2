@@ -1,6 +1,8 @@
 package com.boot.dto;
 
-import java.sql.Date;
+
+import java.sql.Timestamp;
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,5 +21,8 @@ public class BeautyDTO {
     private double weight;
     private String style;
     private String note;
-    private Date reservedAt;
+    private Timestamp reservedAt;
+    private Date reservationDay;
+    private String reservationTime;
 }
+
