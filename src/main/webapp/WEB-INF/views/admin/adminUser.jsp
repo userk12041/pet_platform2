@@ -4,7 +4,6 @@
 <html>
 <head>
     <title>사용자 관리</title>
-	
     <style>
         table {
             width: 100%;
@@ -47,31 +46,12 @@
 					<td>${user.phone_number}</td>
 					<td>${user.address}</td>
 					<td>
-					    <button onclick="editUser('${user.user_id}')">수정</button>
-					    <button onclick="deleteUser('${user.user_id}')">삭제</button>
+						<button class="edit-btn" data-user-id="${user.user_id}">수정</button>
+						<button class="delete-btn" data-user-id="${user.user_id}">삭제</button>
 					</td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
-	<script type="text/javascript">
-		function editUser(user_id) {
-		    alert(user_id + " 수정 기능 구현 예정");
-		}
-
-		function deleteUser(user_id) {
-		    if (confirm("정말로 삭제하시겠습니까?")) {
-		        fetch(`/admin/users/delByAdmin/${user_id}`, {
-		            method: 'DELETE'
-		        })
-		        .then(res => res.text())
-		        .then(result => {
-		            alert(result);
-		            location.reload();
-		        });
-		    }
-		}
-	</script>
-	<script src="/static/js/adminUser.js"></script>
 </body>
 </html>
