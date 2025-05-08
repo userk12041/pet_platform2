@@ -101,6 +101,5 @@ public class PetController {
         petService.deletePet(id);
         return "redirect:/pet/list";
     }
-    
 
 }

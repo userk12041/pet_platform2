@@ -252,7 +252,8 @@ video {
            <span class="logo-text">마이펫 메디컬센터</span>
           </li>
        </ul>
-       <ul class="header-user"> 
+       <ul class="header-user">
+		  <li class="header-li" onclick="location.href='pet_beauty'">미용예약</li> 
           <li class="header-li" onclick="location.href='mypage_info'">마이페이지</li>
           <li class="header-li" onclick="location.href='reservation'">예약 확인</li>
           <% if("admin".equals(id)) { %>
@@ -269,6 +270,7 @@ video {
            </li>
       </ul>
       <ul class="header-user">
+		   <li class="header-li" onclick="alert('로그인이 필요합니다.')">미용예약</li>
            <li class="header-li" onclick="alert('로그인이 필요합니다.')">마이페이지</li>
            <li class="header-li" onclick="alert('로그인이 필요합니다.')">예약 확인</li>
            <li class="header-li" onclick="location.href='login'">로그인</li>
