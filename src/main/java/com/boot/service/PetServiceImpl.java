@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.boot.dao.PetDAO;
+import com.boot.dto.BeautyDTO;
 import com.boot.dto.PetDTO;
 
 @Service("PetService")
@@ -49,5 +50,11 @@ public class PetServiceImpl implements PetService {
     public List<PetDTO> getPetsByUserId(String user_id) {
         return sqlSession.getMapper(PetDAO.class).getPetsByUserId(user_id);
     }
-
+    
+    @Override
+    public void beautyReservation(BeautyDTO reservation) {
+        PetDAO dao = sqlSession.getMapper(PetDAO.class);
+        dao.beautyReservation(reservation);
+    }
+    
 }

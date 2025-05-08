@@ -8,7 +8,6 @@
     <title>Document</title>
 </head>
 <body>
-    aaaa
 	<div class="form-group">
 	    <label>이름:</label>
 	    <span>${pet.name}</span>
@@ -25,7 +24,7 @@
 	    <label>나이:</label>
 	    <span>${pet.age}</span>
 	</div>
-	<form method="post" action="reserveGrooming">
+	<form method="post" action="${pageContext.request.contextPath}/pet/beautyReservation">
 	    <div class="form-group">
 	        <label for="weight">몸무게 (kg):</label>
 	        <input type="text" name="weight" id="weight" required>
