@@ -1,6 +1,7 @@
 package com.boot.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.boot.dto.BeautyDTO;
 import com.boot.dto.PetDTO;
 import com.boot.service.PetService;
 
@@ -100,6 +102,36 @@ public class PetController {
     public String deletePet(@PathVariable int id) {
         petService.deletePet(id);
         return "redirect:/pet/list";
+    }
+    
+    @GetMapping("/beautyReservation/{petId}")
+    public String groomingReservation(@PathVariable int petId, Model model) {
+        PetDTO pet = petService.getPetById(petId);
+        model.addAttribute("pet", pet);
+        return "pet/pet_beauty";
+    }
+    
+    @PostMapping("/beautyReservation")
+    public String beautyReservation(@RequestParam int petId,
+                                    @RequestParam String weight,
+                                    @RequestParam String style,
+                                    @RequestParam String note) {
+
+        PetDTO pet = petService.getPetById(petId);
+
+        BeautyDTO reservation = new BeautyDTO();
+        reservation.setPetId(petId);
+        reservation.setName(pet.getName());
+        reservation.setType(pet.getType());
+        reservation.setGender(pet.getGender());
+        reservation.setAge(pet.getAge());
+        reservation.setWeight(Double.parseDouble(weight));  // ← 숫자형이면 변환
+        reservation.setStyle(style);
+        reservation.setNote(note);
+
+        petService.beautyReservation(reservation);
+
+        return "redirect:/main";
     }
 
 }

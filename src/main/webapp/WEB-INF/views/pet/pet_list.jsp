@@ -56,6 +56,7 @@ a {
         <th>종류</th>
         <th>나이</th>
         <th>상세 보기</th>
+		<th>미용 예약</th>
     </tr>
     <c:forEach var="pet" items="${pets}" varStatus="status">
         <tr>
@@ -65,6 +66,9 @@ a {
             <td>${pet.type}</td>
             <td>${pet.age}</td>
             <td><a href="${pageContext.request.contextPath}/pet/detail/${pet.id}">보기</a></td>
+			<td>
+				<a href="${pageContext.request.contextPath}/pet/beautyReservation/${pet.id}">예약하기</a>
+			</td>
         </tr>
     </c:forEach>
 </table>

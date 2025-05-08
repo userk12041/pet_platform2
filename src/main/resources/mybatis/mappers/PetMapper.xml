@@ -49,5 +49,12 @@
     <select id="getPetsByUserId" parameterType="string" resultType="com.boot.dto.PetDTO">
     	SELECT * FROM pet WHERE user_id = #{user_id} ORDER BY id DESC
 	</select>
+	
+	<insert id="beautyReservation" parameterType="com.boot.dto.BeautyDTO">
+	    insert into beauty_reservation 
+	    (id, pet_id, name, type, gender, age, weight, style, note, reserved_at)
+	    values 
+	    (beauty_reservation_seq.nextval, #{petId}, #{name}, #{type}, #{gender}, #{age}, #{weight}, #{style}, #{note}, sysdate)
+	</insert>
     
 </mapper>

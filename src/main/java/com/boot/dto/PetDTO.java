@@ -1,5 +1,7 @@
 package com.boot.dto;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,4 +17,8 @@ public class PetDTO {
     private int age;
     private String description;
     private String user_id;
+    private double weight;          
+    private String style;           
+    private String note;             
+    private Date reservedAt;  
 }
