@@ -70,6 +70,7 @@
 			    loadContent('/admin/users'); 
 			};
 			// 이벤트 위임
+			// 
 			document.getElementById("main-content").addEventListener('click', function(event) {
 			    if (event.target.classList.contains('edit-btn')) {
 			        const user_id = event.target.dataset.userId;

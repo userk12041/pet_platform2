@@ -43,4 +43,9 @@ public class AdminController {
 		log.info("@# del_user_id =>"+user_id);
 		return "삭제 완료";
 	}
+	
+	@GetMapping("/medical")
+	public String adminMedical() {
+		return "admin/adminMedical";
+	}
 }
