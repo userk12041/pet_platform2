@@ -5,56 +5,57 @@
 
 <mapper namespace="com.boot.dao.PetDAO">
 
-    <!-- 펫 등록 -->
-   <insert id="insertPet" parameterType="com.boot.dto.PetDTO">
-    INSERT INTO pet (
-        id, name, gender,type, age, description, user_id
-    ) VALUES (
-        pet_seq.NEXTVAL,
-        #{name},
-        #{gender},
-        #{type},
-        #{age},
-        #{description},
-        #{user_id}
-    )
-</insert>
+    <!-- ✅ 펫 등록 -->
+    <insert id="insertPet" parameterType="com.boot.dto.PetDTO">
+        INSERT INTO pet (
+            id, name, gender, type, age, description, user_id
+        ) VALUES (
+            pet_seq.NEXTVAL, #{name}, #{gender}, #{type}, #{age}, #{description}, #{user_id}
+        )
+    </insert>
 
-
-    <!-- 전체 목록 조회 -->
+    <!-- ✅ 전체 펫 목록 조회 (관리자용) -->
     <select id="getAllPets" resultType="com.boot.dto.PetDTO">
         SELECT * FROM pet ORDER BY id DESC
     </select>
 
-    <!-- 단일 펫 조회 -->
+    <!-- ✅ 단일 펫 조회 -->
     <select id="getPetById" parameterType="int" resultType="com.boot.dto.PetDTO">
         SELECT * FROM pet WHERE id = #{id}
     </select>
 
-    <!-- 펫 정보 수정 -->
+    <!-- ✅ 펫 정보 수정 -->
     <update id="updatePet" parameterType="com.boot.dto.PetDTO">
         UPDATE pet
         SET name = #{name},
-        	gender = #{gender},
+            gender = #{gender},
             type = #{type},
             age = #{age},
             description = #{description}
         WHERE id = #{id}
     </update>
-	<!-- 펫 삭제 -->
+
+    <!-- ✅ 펫 삭제 -->
     <delete id="deletePet" parameterType="int">
-    	DELETE FROM pet WHERE id = #{id} 
+        DELETE FROM pet WHERE id = #{id}
     </delete>
-	<!-- 유저의 펫 목록 조회 -->
+
+    <!-- ✅ 유저의 펫 목록 조회 -->
     <select id="getPetsByUserId" parameterType="string" resultType="com.boot.dto.PetDTO">
-    	SELECT * FROM pet WHERE user_id = #{user_id} ORDER BY id DESC
-	</select>
-	
-	<insert id="beautyReservation" parameterType="com.boot.dto.BeautyDTO">
-    INSERT INTO BEAUTY_RESERVATION 
-    (ID, PET_ID, NAME, TYPE, GENDER, AGE, WEIGHT, STYLE, NOTE, RESERVED_AT, RESERVATION_DAY, RESERVATION_TIME)
-    VALUES 
-    (BEAUTY_RESERVATION_SEQ.NEXTVAL, #{petId}, #{name}, #{type}, #{gender}, #{age}, #{weight}, #{style}, #{note}, #{reservedAt, jdbcType=TIMESTAMP}, #{reservationDay}, #{reservationTime})
-	</insert>
-    
+        SELECT * FROM pet WHERE user_id = #{user_id} ORDER BY id DESC
+    </select>
+
+    <!-- ✅ 미용 예약 등록 -->
+    <insert id="beautyReservation" parameterType="com.boot.dto.BeautyDTO">
+        INSERT INTO BEAUTY_RESERVATION (
+            ID, PET_ID, NAME, TYPE, GENDER, AGE,
+            WEIGHT, STYLE, NOTE, RESERVED_AT,
+            RESERVATION_DAY, RESERVATION_TIME
+        ) VALUES (
+            BEAUTY_RESERVATION_SEQ.NEXTVAL, #{petId}, #{name}, #{type}, #{gender}, #{age},
+            #{weight}, #{style}, #{note}, #{reservedAt, jdbcType=TIMESTAMP},
+            #{reservationDay}, #{reservationTime}
+        )
+    </insert>
+
 </mapper>

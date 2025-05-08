@@ -72,4 +72,10 @@ public class UserServiceImpl implements UserService{
     	UserDAO dao = sqlSession.getMapper(UserDAO.class);
         return dao.getAllUsers();
     }
+    @Override
+    public void insertKakaoUser(UserDTO user) {
+	    UserDAO dao = sqlSession.getMapper(UserDAO.class);
+	    dao.insertKakaoUser(user);
+	}
+
 }

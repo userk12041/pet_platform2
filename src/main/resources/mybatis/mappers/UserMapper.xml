@@ -5,45 +5,15 @@
 
 <mapper namespace="com.boot.dao.UserDAO">
 
-    <insert id="write" parameterType="hashmap">
-    	insert into users(user_id, password, user_name, nickname, phone_number, email, address)
-    					 values(#{user_id},#{password},#{user_name},#{nickname},#{phone_number},#{email},#{address})
-    </insert>
-    
-    <select id="loginYn" resultType="com.boot.dto.UserDTO">
-        select password from users where user_id=#{user_id}
-    </select>
-    
-<!--     <select id="getUserInfo" parameterType="string" resultType="hashmap"> -->
-<!-- 		SELECT * FROM users WHERE user_id = #{user_id} -->
-<!-- 	</select> -->
-	<select id="getUserInfo" parameterType="string" resultType="com.boot.dto.UserDTO">
-        SELECT *
-        FROM users
-        WHERE user_id = #{user_id}
-    </select>
-    
-	<select id="idCheck" parameterType="string" resultType="int"> 
-		SELECT COUNT(*) FROM users WHERE user_id = #{user_id} 
-	</select>
-	<select id="nickCheck" parameterType="string" resultType="int"> 
-		SELECT COUNT(*) FROM users WHERE nickname = #{nick} 
-	</select>
-
-    <update id="updateUserInfo" parameterType="com.boot.dto.UserDTO">
-        UPDATE users
-        SET user_name = #{user_name},
-<!--             password = #{password}, -->
-            phone_number = #{phone_number},
-            email = #{email},
-            address = #{address},
-            nickname = #{nickname}
-        WHERE user_id = #{user_id}
-    </update>
-	<!-- 회원 탈퇴 -->
-	<delete id="deleteUser" parameterType="String">
-	    DELETE FROM users WHERE user_id = #{userId}
-	</delete>
+    <insert id="write" parameterType="hashmap"> INSERT INTO users(user_id, password, user_name, nickname, phone_number, email, address) VALUES (#{user_id}, #{password}, #{user_name}, #{nickname}, #{phone_number}, #{email}, #{address}) </insert>
+<insert id="insertKakaoUser" parameterType="com.boot.dto.UserDTO"> INSERT INTO users (user_id, password, nickname, user_name, email) VALUES (#{user_id}, #{password}, #{nickname}, #{user_name}, #{email}) </insert>
+<!--  ✅ 수정된 로그인 쿼리  -->
+<select id="loginYn" resultType="com.boot.dto.UserDTO"> SELECT * FROM users WHERE user_id = #{user_id} </select>
+<select id="getUserInfo" parameterType="string" resultType="com.boot.dto.UserDTO"> SELECT * FROM users WHERE user_id = #{user_id} </select>
+<select id="idCheck" parameterType="string" resultType="int"> SELECT COUNT(*) FROM users WHERE user_id = #{user_id} </select>
+<select id="nickCheck" parameterType="string" resultType="int"> SELECT COUNT(*) FROM users WHERE nickname = #{nick} </select>
+<update id="updateUserInfo" parameterType="com.boot.dto.UserDTO"> UPDATE users SET user_name = #{user_name}, phone_number = #{phone_number}, email = #{email}, address = #{address}, nickname = #{nickname} WHERE user_id = #{user_id} </update>
+<delete id="deleteUser" parameterType="String"> DELETE FROM users WHERE user_id = #{userId} </delete>
 	
 	<!--test-->
 	<select id="getAllUsers" resultType="com.boot.dto.UserDTO">

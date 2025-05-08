@@ -16,7 +16,7 @@ public interface UserService {
     public int idCheck(String user_id);
     public int nickCheck(String nick);
 	void deleteUser(String userId);
-	
+	void insertKakaoUser(UserDTO user);
 	//test
 	List<UserDTO> getAllUsers();
 
