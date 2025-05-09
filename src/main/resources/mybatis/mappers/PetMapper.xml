@@ -46,16 +46,14 @@
     </select>
 
     <!-- ✅ 미용 예약 등록 -->
-    <insert id="beautyReservation" parameterType="com.boot.dto.BeautyDTO">
-        INSERT INTO BEAUTY_RESERVATION (
-            ID, PET_ID, NAME, TYPE, GENDER, AGE,
-            WEIGHT, STYLE, NOTE, RESERVED_AT,
-            RESERVATION_DAY, RESERVATION_TIME
-        ) VALUES (
-            BEAUTY_RESERVATION_SEQ.NEXTVAL, #{petId}, #{name}, #{type}, #{gender}, #{age},
-            #{weight}, #{style}, #{note}, #{reservedAt, jdbcType=TIMESTAMP},
-            #{reservationDay}, #{reservationTime}
-        )
-    </insert>
+	<insert id="beautyReservation">
+	    INSERT INTO beauty_reservation
+	    (id, pet_id, name, type, gender, age, weight, style, note, reserved_at,
+	     reservation_day, reservation_time, user_name, user_phone)
+	    VALUES
+	    (beauty_reservation_seq.nextval, #{petId}, #{name}, #{type}, #{gender}, #{age},
+	     #{weight}, #{style}, #{note}, sysdate, #{reservationDay}, #{reservationTime},
+	     #{userName}, #{userPhone})
+	</insert>
 
 </mapper>

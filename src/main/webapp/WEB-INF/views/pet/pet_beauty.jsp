@@ -133,6 +133,16 @@
 <form method="post" action="${pageContext.request.contextPath}/pet/beautyReservation" class="reservation-form">
     <!-- 왼쪽: 펫 정보 + 입력폼 -->
     <div class="left-section">
+		<h2>고객</h2>
+		<div class="form-group">
+		    <label>이름</label>
+		    <span>${my_info.user_name}</span>
+		</div>
+		<div class="form-group">
+		    <label>연락처</label>
+		    <span>${my_info.phone_number}</span>
+		</div>
+		<h2>펫</h2>
         <div class="form-group">
             <label>이름</label>
             <span>${pet.name}</span>
