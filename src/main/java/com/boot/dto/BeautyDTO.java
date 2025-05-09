@@ -24,5 +24,7 @@ public class BeautyDTO {
     private Timestamp reservedAt;
     private Date reservationDay;
     private String reservationTime;
+    private String userName;
+    private String userPhone;
 }
 

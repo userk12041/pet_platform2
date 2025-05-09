@@ -235,7 +235,7 @@ body {
 		<p><strong>이메일:</strong> ${my_info.email}</p>
 		<p><strong>닉네임:</strong> ${my_info.nickname}</p>
 		<p><strong>주소:</strong> ${my_info.address}</p>
-		<a href="${pageContext.request.contextPath}/user_info_modify" class="btn" style="display:block; margin-top:20px; text-align:center;">내 정보 수정</a>
+		<a href="${pageContext.request.contextPath}/user_info_modify" class="btn" style="display:block; bargin-top:20px; text-align:center;">내 정보 수정</a>
     </div>
     <div class="right-panel">
         <div class="section">
@@ -257,7 +257,11 @@ body {
                         <td>${pet.gender}</td>
                         <td>${pet.type}</td>
                         <td>${pet.age}</td>
-                        <td><a href="${pageContext.request.contextPath}/pet/detail/${pet.id}" class="btn">보기</a></td>
+                        <td>
+							<a href="${pageContext.request.contextPath}/pet/pet_medical/${pet.id}" class="btn" style="margin-left: 5px;">진료예약</a>
+							<a href="${pageContext.request.contextPath}/pet/pet_beauty/${pet.id}" class="btn" style="margin-left: 5px;">미용예약</a>
+							<a href="${pageContext.request.contextPath}/pet/detail/${pet.id}" class="btn">보기</a>
+						</td>
                     </tr>
                 </c:forEach>
             </table>

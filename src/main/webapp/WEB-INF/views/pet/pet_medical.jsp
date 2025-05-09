@@ -6,7 +6,7 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>미용 예약</title>
+    <title>진료 예약</title>
 
     <style>
         .reservation-form {
@@ -134,7 +134,7 @@
 <form method="post" action="${pageContext.request.contextPath}/pet/beautyReservation" class="reservation-form">
     <!-- 왼쪽: 펫 정보 + 입력폼 -->
     <div class="left-section">
-		<h1>미용 예약</h1>
+		<h1>진료 예약</h1>
 		<hr>
 		<h2>고객</h2>
 		<div class="form-group">
@@ -163,20 +163,9 @@
             <label>나이</label>
             <span>${pet.age}</span>
         </div>
-
-        <div class="form-group">
-            <label for="weight">몸무게 (kg) <mark>*필수입력*</mark></label>
-            <input type="text" name="weight" id="weight" required>
-        </div>
-
-        <div class="form-group">
-            <label for="style">미용 스타일</label>
-            <input type="text" name="style" id="style">
-        </div>
-
         <div class="form-group">
             <label for="note">특이사항</label>
-            <textarea name="note" id="note" rows="3" placeholder="입질,사나움,공격성 등"></textarea>
+            <textarea name="note" id="note" rows="3"></textarea>
         </div>
 
         <!-- 숨겨진 값 -->

@@ -1,4 +1,4 @@
-package com.boot.controller;
+	package com.boot.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.boot.dto.BeautyDTO;
 import com.boot.dto.PetDTO;
+import com.boot.dto.UserDTO;
 import com.boot.service.PetService;
+import com.boot.service.UserService;
 
 @Controller
 @RequestMapping("/pet")
@@ -26,6 +28,9 @@ public class PetController {
 
     @Autowired
     private PetService petService;
+    
+    @Autowired
+    private UserService userService;
 
     // 등록 폼 보기
     @GetMapping("/register")
@@ -113,11 +118,34 @@ public class PetController {
         return "redirect:/mypage_info";
     }
     
-    @GetMapping("/beautyReservation/{petId}")
-    public String groomingReservation(@PathVariable int petId, Model model) {
+    @GetMapping("/pet_beauty/{petId}")
+    public String beautyReservationPage(@PathVariable int petId, HttpSession session, Model model) {
         PetDTO pet = petService.getPetById(petId);
         model.addAttribute("pet", pet);
+
+        // 유저 정보도 가져오기
+        String userId = (String) session.getAttribute("id");
+        if (userId != null) {
+            UserDTO myInfo = userService.getUserInfo(userId);  // 💥 요거 userService로!
+            model.addAttribute("my_info", myInfo);
+        }
+
         return "pet/pet_beauty";
+    }
+    
+    @GetMapping("/pet_medical/{petId}")
+    public String medicalReservationPage(@PathVariable int petId, HttpSession session, Model model) {
+        PetDTO pet = petService.getPetById(petId);
+        model.addAttribute("pet", pet);
+
+        // 유저 정보도 가져오기
+        String userId = (String) session.getAttribute("id");
+        if (userId != null) {
+            UserDTO myInfo = userService.getUserInfo(userId);  // 💥 요거 userService로!
+            model.addAttribute("my_info", myInfo);
+        }
+
+        return "pet/pet_medical";
     }
     
     @PostMapping("/beautyReservation")
@@ -126,7 +154,9 @@ public class PetController {
                                     @RequestParam String style,
                                     @RequestParam String note,
                                     @RequestParam String reservationDay,
-                                    @RequestParam String reservationTime) {
+                                    @RequestParam String reservationTime,
+                                    @RequestParam String userName,
+                                    @RequestParam String userPhone) {
 
         PetDTO pet = petService.getPetById(petId);
 
@@ -136,27 +166,29 @@ public class PetController {
         reservation.setType(pet.getType());
         reservation.setGender(pet.getGender());
         reservation.setAge(pet.getAge());
-        reservation.setWeight(Double.parseDouble(weight));  // ← 숫자형이면 변환
+        reservation.setWeight(Double.parseDouble(weight));
         reservation.setStyle(style);
         reservation.setNote(note);
-        
-     // String -> Date 변환 (예약 날짜만)
+
+        // 예약자 정보 추가
+        reservation.setUserName(userName);
+        reservation.setUserPhone(userPhone);
+
+        // String -> Date 변환 (예약 날짜)
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date resDay = (Date) dateFormat.parse(reservationDay);
             reservation.setReservationDay(resDay);
         } catch (ParseException e) {
-            e.printStackTrace();  // 에러 처리
+            e.printStackTrace();
         }
 
-        // 시간은 문자열 그대로
         reservation.setReservationTime(reservationTime);
 
-//        reservation.setReservedAt(new java.sql.Date(System.currentTimeMillis())); //날짜
-        reservation.setReservedAt(new java.sql.Timestamp(System.currentTimeMillis())); //날짜+시간
-        
+        // 신청일시 (날짜 + 시간)
+        reservation.setReservedAt(new java.sql.Timestamp(System.currentTimeMillis()));
+
         petService.beautyReservation(reservation);
-        
 
         return "redirect:/main";
     }
