@@ -258,6 +258,7 @@ body {
                         <td>${pet.type}</td>
                         <td>${pet.age}</td>
                         <td>
+							<a href="${pageContext.request.contextPath}/pet/pet_medical/${pet.id}" class="btn" style="margin-left: 5px;">진료예약</a>
 							<a href="${pageContext.request.contextPath}/pet/pet_beauty/${pet.id}" class="btn" style="margin-left: 5px;">미용예약</a>
 							<a href="${pageContext.request.contextPath}/pet/detail/${pet.id}" class="btn">보기</a>
 						</td>

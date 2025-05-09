@@ -6,7 +6,7 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>미용 예약</title>
+    <title>진료 예약</title>
 
     <style>
         .reservation-form {
@@ -134,7 +134,7 @@
 <form method="post" action="${pageContext.request.contextPath}/pet/beautyReservation" class="reservation-form">
     <!-- 왼쪽: 펫 정보 + 입력폼 -->
     <div class="left-section">
-		<h1>미용 예약</h1>
+		<h1>진료 예약</h1>
 		<hr>
 		<h2>고객</h2>
 		<div class="form-group">

@@ -133,6 +133,21 @@ public class PetController {
         return "pet/pet_beauty";
     }
     
+    @GetMapping("/pet_medical/{petId}")
+    public String medicalReservationPage(@PathVariable int petId, HttpSession session, Model model) {
+        PetDTO pet = petService.getPetById(petId);
+        model.addAttribute("pet", pet);
+
+        // 유저 정보도 가져오기
+        String userId = (String) session.getAttribute("id");
+        if (userId != null) {
+            UserDTO myInfo = userService.getUserInfo(userId);  // 💥 요거 userService로!
+            model.addAttribute("my_info", myInfo);
+        }
+
+        return "pet/pet_medical";
+    }
+    
     @PostMapping("/beautyReservation")
     public String beautyReservation(@RequestParam int petId,
                                     @RequestParam String weight,
