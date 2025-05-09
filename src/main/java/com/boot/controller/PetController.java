@@ -3,7 +3,6 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.boot.dto.BeautyDTO;
+import com.boot.dto.MedicalReservationDTO;
 import com.boot.dto.PetDTO;
 import com.boot.dto.UserDTO;
+import com.boot.service.MedicalReservationService;
 import com.boot.service.PetService;
 import com.boot.service.UserService;
 
@@ -31,6 +32,9 @@ public class PetController {
     
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private MedicalReservationService medicalReservationService;
 
     // 등록 폼 보기
     @GetMapping("/register")
@@ -131,21 +135,6 @@ public class PetController {
         }
 
         return "pet/pet_beauty";
-    }
-    
-    @GetMapping("/pet_medical/{petId}")
-    public String medicalReservationPage(@PathVariable int petId, HttpSession session, Model model) {
-        PetDTO pet = petService.getPetById(petId);
-        model.addAttribute("pet", pet);
-
-        // 유저 정보도 가져오기
-        String userId = (String) session.getAttribute("id");
-        if (userId != null) {
-            UserDTO myInfo = userService.getUserInfo(userId);  // 💥 요거 userService로!
-            model.addAttribute("my_info", myInfo);
-        }
-
-        return "pet/pet_medical";
     }
     
     @PostMapping("/beautyReservation")

@@ -183,6 +183,8 @@
         <input type="hidden" name="reservationDay" id="selectedDay">
         <input type="hidden" name="reservationTime" id="selectedTime">
         <input type="hidden" name="petId" value="${pet.id}">
+		<input type="hidden" name="userName" value="${my_info.user_name}">
+		<input type="hidden" name="userPhone" value="${my_info.phone_number}">
     </div>
 
     <!-- 오른쪽: 예약 파트 -->

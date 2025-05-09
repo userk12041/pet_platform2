@@ -131,7 +131,7 @@
     </style>
 </head>
 <body>
-<form method="post" action="${pageContext.request.contextPath}/pet/beautyReservation" class="reservation-form">
+<form method="post" action="${pageContext.request.contextPath}/pet/medicalReservation" class="reservation-form">
     <!-- 왼쪽: 펫 정보 + 입력폼 -->
     <div class="left-section">
 		<h1>진료 예약</h1>
@@ -169,7 +169,7 @@
         </div>
 
         <!-- 숨겨진 값 -->
-        <input type="hidden" name="reservationDay" id="selectedDay">
+        <input type="hidden" name="reservationDate" id="selectedDay">
         <input type="hidden" name="reservationTime" id="selectedTime">
         <input type="hidden" name="petId" value="${pet.id}">
     </div>
