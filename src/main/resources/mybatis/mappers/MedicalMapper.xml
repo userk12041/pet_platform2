@@ -38,4 +38,36 @@
         )
     </insert>
 
+<<<<<<< HEAD
+=======
+	<select id="getMedicalList" resultType="com.boot.dto.MedicalDTO">
+		select id, pet_name, treatment_date, doctor_id, content, prescription, notes, user_id, created_at, updated_at
+		from medical
+	</select>
+	
+	<select id="getMedicalInfo" parameterType="long" resultType="com.boot.dto.MedicalDTO">
+        select id, pet_name, treatment_date, doctor_id, content, prescription, notes, user_id, created_at, updated_at
+		from medical
+		where id = #{id}
+    </select>
+    
+    <insert id="insertMedical" parameterType="com.boot.dto.MedicalDTO">
+    	insert into medical(id, pet_name, treatment_date, doctor_id, content,
+    						prescription, notes, user_id)
+    			values (medical_seq.NEXTVAL, #{pet_name}, #{treatment_date}, #{doctor_id},
+    			 		#{content}, #{prescription}, #{notes}, #{user_id})
+    </insert>
+
+    <update id="updateMedicalInfo" parameterType="com.boot.dto.MedicalDTO">
+    	update medical 
+    	set pet_name = #{pet_name}, doctor_id = #{doctor_id}, content = #{content}, 
+    	    prescription = #{prescription}, notes = #{notes}, updated_at = CURRENT_TIMESTAMP
+    	where id = #{id}
+    </update>
+    
+	<delete id="deleteMedical" parameterType="long">
+		delete from medical where id = #{id}
+	</delete>
+	
+>>>>>>> a9ad53371e3dc44d93f889a4091535a864f3dd3e
 </mapper>

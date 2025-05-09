@@ -2,7 +2,6 @@ package com.boot.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,20 +64,9 @@ public class UserServiceImpl implements UserService{
 
 	//test
     @Override
-    public List<UserDTO> getAllUsers() {
+    public ArrayList<UserDTO> getUserList() {
     	UserDAO dao = sqlSession.getMapper(UserDAO.class);
-        return dao.getAllUsers();
-    }
-    @Override
-    public List<UserDTO> getAllUsers(String searchType, String searchKeyword) {
-    	UserDAO dao = sqlSession.getMapper(UserDAO.class);
-        return dao.getAllUsers(searchType, searchKeyword);
-    }
-    @Override
-    public List<UserDTO> getAllUsers(String searchType, String searchKeyword, String sortField, String sortOrder) {
-        log.info("UserServiceImpl - Sort Field: {}, Sort Order: {}", sortField, sortOrder);
-    	UserDAO dao = sqlSession.getMapper(UserDAO.class);
-        return dao.getAllUsers(searchType, searchKeyword, sortField, sortOrder);
+        return dao.getUserList();
     }
     
     @Override

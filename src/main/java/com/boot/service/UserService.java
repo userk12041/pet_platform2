@@ -2,7 +2,6 @@ package com.boot.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import com.boot.dto.UserDTO;
 
@@ -19,9 +18,5 @@ public interface UserService {
 	void insertKakaoUser(UserDTO user);
 	
 	//admin
-	List<UserDTO> getAllUsers();
-	// 검색 기능 추가
-	List<UserDTO> getAllUsers(String searchType, String searchKeyword);
-	// 정렬 기능 추가
-	List<UserDTO> getAllUsers(String searchType, String searchKeyword, String sortField, String sortOrder);
+	ArrayList<UserDTO> getUserList();
 }
