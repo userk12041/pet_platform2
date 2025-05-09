@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.dao.MedicalReservationDAO">
+
+    <!-- ✅ 진료 예약 등록 -->
+    <insert id="insertMedicalReservation" parameterType="com.boot.dto.MedicalReservationDTO">
+        INSERT INTO MEDICAL_RESERVATION (
+            ID,
+            PET_ID,
+            USER_ID,
+            USER_NAME,
+            PHONE_NUMBER,
+            NAME,
+            TYPE,
+            GENDER,
+            AGE,
+            NOTE,
+            RESERVATION_DATE,
+            RESERVATION_TIME,
+            CREATED_AT
+        ) VALUES (
+            MEDICAL_RESERVATION_SEQ.NEXTVAL,
+            #{petId},
+            #{userId},
+            #{userName},
+            #{phoneNumber},
+            #{name},
+            #{type},
+            #{gender},
+            #{age},
+            #{note, jdbcType=CLOB},
+            #{reservationDate, jdbcType=DATE},
+            #{reservationTime},
+            #{createdAt, jdbcType=DATE}
+        )
+    </insert>
+</mapper>
