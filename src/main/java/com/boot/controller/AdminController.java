@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.boot.dto.MedicalDTO;
 import com.boot.dto.UserDTO;
+import com.boot.service.MedicalService;
 import com.boot.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +25,8 @@ public class AdminController {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private MedicalService medicalService;
 	
 	@GetMapping("/main")
 	public String adminHome() {
@@ -45,7 +49,11 @@ public class AdminController {
 	}
 	
 	@GetMapping("/medical")
-	public String adminMedical() {
+	public String adminMedical(Model model) {
+		List<MedicalDTO> mediList = medicalService.getAllMedical();
+		log.info("@# MedicalList=>"+mediList);
+		
+		model.addAttribute("mediList", mediList);
 		return "admin/adminMedical";
 	}
 }
