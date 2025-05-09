@@ -16,7 +16,7 @@ public interface UserDAO {
 
     // 🔥 회원탈퇴 메서드 추가
     void deleteUser(String userId);
-    
+    void insertKakaoUser(UserDTO user);
     //test
     public List<UserDTO> getAllUsers();
 }

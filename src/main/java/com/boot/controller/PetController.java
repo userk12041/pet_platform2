@@ -35,9 +35,16 @@ public class PetController {
 
     // 등록 처리
     @PostMapping("/register")
-    public String registerPet(PetDTO pet) {
+    public String registerPet(PetDTO pet, HttpSession session) {
+        String userId = (String) session.getAttribute("id");
+        if (userId == null) {
+            return "redirect:/login";
+        }
+
+        pet.setUser_id(userId); // 세션에서 유저 ID 주입
         petService.insertPet(pet);
-        return "redirect:/pet/list";
+
+        return "redirect:/mypage_info";
     }
 
 //    // 전체 펫 목록 보기 - 관리자 2
@@ -49,15 +56,15 @@ public class PetController {
 //    }
     
     // 유저의 펫 목록 보기
-    @GetMapping("/list")
-    public String listPets(HttpSession session, Model model) {
-        String userId = (String) session.getAttribute("id");
-        if (userId == null) return "redirect:/login";
-
-        List<PetDTO> pets = petService.getPetsByUserId(userId);
-        model.addAttribute("pets", pets);
-        return "pet/pet_list";
-    }
+//    @GetMapping("/list")
+//    public String listPets(HttpSession session, Model model) {
+//        String userId = (String) session.getAttribute("id");
+//        if (userId == null) return "redirect:/login";
+//
+//        List<PetDTO> pets = petService.getPetsByUserId(userId);
+//        model.addAttribute("pets", pets);
+//        return "pet/pet_list";
+//    }
 
 
     // 펫 상세 보기
@@ -103,7 +110,7 @@ public class PetController {
     @PostMapping("/delete/{id}")
     public String deletePet(@PathVariable int id) {
         petService.deletePet(id);
-        return "redirect:/pet/list";
+        return "redirect:/mypage_info";
     }
     
     @GetMapping("/beautyReservation/{petId}")

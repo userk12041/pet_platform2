@@ -1,69 +1,49 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
-<%@ page session="true" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Insert title here</title>
-    <style>
-        .header-ul {
-            display: flex;
-            list-style: none;
-            justify-content: end;
-            margin-top: 20px;
-            margin-right: 10px;
-        }
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-        .header-li {
-            padding: 0px 20px;
-            border-right: 1px solid #0000001a;
-            font-size: 12px;
-            cursor: pointer;
-        }
+<style>
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 15px 40px;
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
 
-        .header-li a {
-            text-decoration: none;
-            color: black;
-        }
+.logo-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2c3e50;
+    text-decoration: none;
+}
 
-        .logo-text {
-            font-size: 20px;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-    </style>
-</head>
-<body>
-<ul class="header-ul">
-<%
-    String id = (String)session.getAttribute("id");
-    if(id != null && !id.equals("")) {
-%>
-    <li class="header-li" onclick="location.href='<%= request.getContextPath() %>/main'"><span class="logo-text">마이펫 메디컬센터</span></li>
-    <li class="header-li" onclick="location.href='<%= request.getContextPath() %>/mypage_info'">마이페이지</li>
-    <li class="header-li" onclick="location.href='<%= request.getContextPath() %>/reservation'">예약 확인</li>
-<%
-    if("admin".equals(id)) {
-%>
-    <li class="header-li" onclick="location.href='<%= request.getContextPath() %>/management'">관리자 페이지</li>
-<%
-    }
-%>
-    <li class="header-li" onclick="location.href='<%= request.getContextPath() %>/logout'">로그아웃</li>
-    <li class="header-li" onclick="location.href='<%= request.getContextPath() %>/support'">고객센터</li>
-<%
-    } else {
-%>
-    <li class="header-li" onclick="location.href='<%= request.getContextPath() %>/main'"><span class="logo-text">마이펫 메디컬센터</span></li>
-    <li class="header-li" onclick="alert('로그인이 필요합니다.')">마이페이지</li>
-    <li class="header-li" onclick="alert('로그인이 필요합니다.')">예약 확인</li>
-    <li class="header-li" onclick="location.href='<%= request.getContextPath() %>/login'">로그인</li>
-    <li class="header-li" onclick="location.href='<%= request.getContextPath() %>/register'">회원가입</li>
-    <li class="header-li" onclick="alert('로그인이 필요합니다.')">고객센터</li>
-<%
-    }
-%>
-</ul>
+.nav-menu {
+    display: flex;
+    gap: 25px;
+}
 
-</body>
-</html>
+.nav-menu a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.nav-menu a:hover {
+    color: #5bd3ff;
+}
+</style>
+
+<div class="header-wrapper">
+    <a href="${pageContext.request.contextPath}/main" class="logo-text">마이펫 메디컬센터</a>
+    <div class="nav-menu">
+        <a href="${pageContext.request.contextPath}/mypage_info">마이페이지</a>
+        <a href="${pageContext.request.contextPath}/reservation">예약 확인</a>
+        <a href="${pageContext.request.contextPath}/logout">로그아웃</a>
+        <a href="${pageContext.request.contextPath}/support">고객센터</a>
+    </div>
+</div>
