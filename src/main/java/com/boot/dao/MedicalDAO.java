@@ -1,10 +1,13 @@
 package com.boot.dao;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import com.boot.dto.MedicalDTO;
 
 public interface MedicalDAO {
-	List<MedicalDTO> getAllMedical();
-	MedicalDTO selectMedicalById(Long id);
+	ArrayList<MedicalDTO> getMedicalList();
+	MedicalDTO getMedicalInfo(Long id);
+	void insertMedical(MedicalDTO dto);
+	void updateMedicalInfo(MedicalDTO dto);
+	void deleteMedical(Long id);
 }

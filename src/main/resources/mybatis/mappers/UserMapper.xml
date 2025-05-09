@@ -16,23 +16,9 @@
 <delete id="deleteUser" parameterType="String"> DELETE FROM users WHERE user_id = #{userId} </delete>
 	
 	<!--test-->
-	<select id="getAllUsers" resultType="com.boot.dto.UserDTO">
+	<select id="getUserList" resultType="com.boot.dto.UserDTO">
 		SELECT user_id, user_name, email, phone_number, address, nickname
         FROM users
-        <where>
-            <if test="searchType == 'user_id' and searchKeyword != null and searchKeyword != ''">
-                user_id LIKE '%' || #{searchKeyword} || '%'
-            </if>
-            <if test="searchType == 'user_name' and searchKeyword != null and searchKeyword != ''">
-                user_name LIKE '%' || #{searchKeyword} || '%'
-            </if>
-        </where>
-        <if test="sortField != null and sortField != ''">
-        	ORDER BY ${sortField} ${sortOrder}
-		</if>
-		<if test="sortField == null or sortField == ''">
-		    ORDER BY user_id
-		</if>
 	</select>
 	
 </mapper>

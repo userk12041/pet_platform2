@@ -1,16 +1,14 @@
 package com.boot.controller;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.boot.dto.MedicalDTO;
 import com.boot.dto.UserDTO;
@@ -23,51 +21,70 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-	
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private MedicalService medicalService;
 	
-	@GetMapping("/main")
-	public String adminHome() {
-		return "admin/adminMain";
+	@GetMapping("/user/list")
+	public String userList(Model model) {
+		ArrayList<UserDTO> userList = userService.getUserList();
+		model.addAttribute("userList", userList);
+		return "admin/user_list";
 	}
 	
-	@GetMapping("/users")
-	public String userList(Model model,
-            @RequestParam(value = "searchType", required = false) String searchType,
-            @RequestParam(value = "searchKeyword", required = false) String searchKeyword,
-            @RequestParam(value = "sortField", required = false) String sortField,
-            @RequestParam(value = "sortOrder", required = false) String sortOrder,
-            @RequestParam(value = "page", defaultValue = "1") int pageNum,
-            @RequestParam(value = "amount", defaultValue = "10") int amount) {
-	    List<UserDTO> users = userService.getAllUsers(searchType, searchKeyword, sortField, sortOrder);
-	    log.info("Search Type: {}, Keyword: {}, Sort Field: {}, Order: {}", searchType, searchKeyword, sortField, sortOrder);
-	    model.addAttribute("userList", users);
-	    return "admin/adminUser";
-	}
-	@ResponseBody // 반환하는 문자열 View 가 아닌 HTTP 응답 본문에 쓰여 프론트엔드로 전송됨
-	@DeleteMapping("/users/delByAdmin/{user_id}")
-	public String delUserByAdmin(@PathVariable String user_id) {
-		userService.deleteUser(user_id);
-		log.info("@# del_user_id =>"+user_id);
-		return "삭제 완료";
+	@GetMapping("/user/edit")
+	public String userEdit(@RequestParam("id") String userId, Model model) {
+		UserDTO user = userService.getUserInfo(userId);
+		model.addAttribute("user", user);
+		return "admin/user_edit";
 	}
 	
-	@GetMapping("/medical")
-	public String adminMedical(Model model) {
-		List<MedicalDTO> mediList = medicalService.getAllMedical();
-		log.info("@# MedicalList=>"+mediList);
-		
-		model.addAttribute("mediList", mediList);
-		return "admin/adminMedical";
+	@PostMapping("/user/update")
+	public String userUpdate(UserDTO user) {
+		userService.updateUserInfo(user);
+		return "redirect:/admin/user/list";
+	}
+	
+	@GetMapping("/user/delete")
+	public String userDelete(@RequestParam("id") String userId) {
+		userService.deleteUser(userId);
+		return "redirect:/admin/user/list";
 	}
 
-    @GetMapping("/medical/records/{id}")
-    @ResponseBody
-    public MedicalDTO getMedicalRecord(@PathVariable Long id) {
-        log.info("@# getMedicalRecord ID=>" + id);
-        return medicalService.getMedicalById(id);
-    }
+	@GetMapping("/medical/list")
+	public String medicalList(Model model) {
+		ArrayList<MedicalDTO> MedicalList = medicalService.getMedicalList();
+		model.addAttribute("medicalList", MedicalList);
+		return "admin/medical_list";
+	}
+	
+	@GetMapping("/medical/write")
+	public String writeForm() {
+	    return "admin/medical_write";
+	}
+
+	@PostMapping("/medical/write")
+	public String writeSubmit(MedicalDTO dto) {
+	    medicalService.insertMedical(dto);
+	    return "redirect:/admin/medical/list";
+	}
+	@GetMapping("/medical/edit")
+	public String editMedical(@RequestParam("id") Long id, Model model) {
+	    MedicalDTO medical = medicalService.getMedicalInfo(id);
+	    model.addAttribute("medical", medical);
+	    return "admin/medical_edit";
+	}
+
+	@PostMapping("/medical/update")
+	public String updateMedical(MedicalDTO dto) {
+	    medicalService.updateMedicalInfo(dto);
+	    return "redirect:/admin/medical/list";
+	}
+
+	@GetMapping("/medical/delete")
+	public String medicalDelete(@RequestParam("id") Long id) {
+		medicalService.deleteMedical(id);
+		return "redirect:/admin/medical/list";
+	}
 }
