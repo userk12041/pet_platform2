@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.boot.dto.MedicalDTO;
@@ -34,9 +35,14 @@ public class AdminController {
 	}
 	
 	@GetMapping("/users")
-	public String userList(Model model) {
-		List<UserDTO> users = userService.getAllUsers();
-		log.info("@# UserList=>"+users);
+	public String userList(Model model, 
+			@RequestParam(value = "searchType", required = false) String searchType,
+            @RequestParam(value = "searchKeyword", required = false) String searchKeyword,
+            @RequestParam(value = "sortField", required = false) String sortField,
+            @RequestParam(value = "sortOrder", required = false) String sortOrder) {
+		List<UserDTO> users = userService.getAllUsers(searchType, searchKeyword, sortField, sortOrder);
+//		log.info("@# UserList=>"+users);
+		log.info("Search Type: {}, Keyword: {}, Sort Field: {}, Order: {}", searchType, searchKeyword, sortField, sortOrder);
 		model.addAttribute("userList",users);
 		return "admin/adminUser";
 	}
@@ -56,4 +62,11 @@ public class AdminController {
 		model.addAttribute("mediList", mediList);
 		return "admin/adminMedical";
 	}
+
+    @GetMapping("/medical/records/{id}")
+    @ResponseBody
+    public MedicalDTO getMedicalRecord(@PathVariable Long id) {
+        log.info("@# getMedicalRecord ID=>" + id);
+        return medicalService.getMedicalById(id);
+    }
 }

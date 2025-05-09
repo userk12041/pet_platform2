@@ -20,4 +20,9 @@ public class MedicalServiceImpl implements MedicalService{
 		MedicalDAO dao = sqlSession.getMapper(MedicalDAO.class);
 		return dao.getAllMedical();
 	}
+    @Override
+    public MedicalDTO getMedicalById(Long id) {
+    	MedicalDAO dao = sqlSession.getMapper(com.boot.dao.MedicalDAO.class);
+        return dao.selectMedicalById(id);
+    }
 }

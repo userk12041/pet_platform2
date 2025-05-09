@@ -6,4 +6,5 @@ import com.boot.dto.MedicalDTO;
 
 public interface MedicalService {
 	List<MedicalDTO> getAllMedical();
+	public MedicalDTO getMedicalById(Long id);
 }
