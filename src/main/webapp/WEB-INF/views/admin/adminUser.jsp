@@ -24,6 +24,7 @@
             border: 1px solid #ddd;
             background-color: #f9f9f9;
         }
+		
 		.sort-buttons {
 		    margin-bottom: 10px;
 		}
@@ -32,6 +33,7 @@
 		    padding: 8px 12px;
 		    cursor: pointer;
 		}
+		
     </style>
 </head>
 <body>
@@ -39,7 +41,7 @@
     <h2>👤 사용자 목록</h2>
 	<!--검색기능-->
 	<div class="search-container">
-        <form id="searchForm" onsubmit="performSearch(); return false;">
+		<form id="searchForm" onsubmit="performSearch(); return false;">
             <select name="searchType">
                 <option value="user_id">ID</option>
                 <option value="user_name">이름</option>

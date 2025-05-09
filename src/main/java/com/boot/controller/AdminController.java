@@ -35,16 +35,17 @@ public class AdminController {
 	}
 	
 	@GetMapping("/users")
-	public String userList(Model model, 
-			@RequestParam(value = "searchType", required = false) String searchType,
+	public String userList(Model model,
+            @RequestParam(value = "searchType", required = false) String searchType,
             @RequestParam(value = "searchKeyword", required = false) String searchKeyword,
             @RequestParam(value = "sortField", required = false) String sortField,
-            @RequestParam(value = "sortOrder", required = false) String sortOrder) {
-		List<UserDTO> users = userService.getAllUsers(searchType, searchKeyword, sortField, sortOrder);
-//		log.info("@# UserList=>"+users);
-		log.info("Search Type: {}, Keyword: {}, Sort Field: {}, Order: {}", searchType, searchKeyword, sortField, sortOrder);
-		model.addAttribute("userList",users);
-		return "admin/adminUser";
+            @RequestParam(value = "sortOrder", required = false) String sortOrder,
+            @RequestParam(value = "page", defaultValue = "1") int pageNum,
+            @RequestParam(value = "amount", defaultValue = "10") int amount) {
+	    List<UserDTO> users = userService.getAllUsers(searchType, searchKeyword, sortField, sortOrder);
+	    log.info("Search Type: {}, Keyword: {}, Sort Field: {}, Order: {}", searchType, searchKeyword, sortField, sortOrder);
+	    model.addAttribute("userList", users);
+	    return "admin/adminUser";
 	}
 	@ResponseBody // 반환하는 문자열 View 가 아닌 HTTP 응답 본문에 쓰여 프론트엔드로 전송됨
 	@DeleteMapping("/users/delByAdmin/{user_id}")

@@ -58,16 +58,16 @@
     </div>
 	<script>
 			// 페이지 불러오기
-	        function loadContent(url) {
-	            fetch(url)
-	                .then(response => response.text())
-	                .then(html => {
-	                    document.getElementById("main-content").innerHTML = html;
-	                });
-	        }
+			function loadContent(url) {
+			    fetch(url)
+			        .then(response => response.text())
+			        .then(html => {
+			            document.getElementById("main-content").innerHTML = html;
+			        });
+			}
 			// 페이지 처음 열릴 때 사용자 정보 로딩
 			window.onload = function () {
-			    loadContent('/admin/users'); 
+			    loadContent('/admin/users');
 			};
 			// 이벤트 위임
 			// 수정, 삭제, 정렬 처리

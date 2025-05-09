@@ -34,5 +34,5 @@
 		    ORDER BY user_id
 		</if>
 	</select>
-
+	
 </mapper>

@@ -33,14 +33,8 @@ public class UserServiceImpl implements UserService{
 		UserDAO dao=sqlSession.getMapper(UserDAO.class);
 		dao.write(param);
 	}
-
-//	@Override
-//	public HashMap<String, String> getUserInfo(String user_id) {
-//		UserDAO dao = sqlSession.getMapper(UserDAO.class);
-//		return dao.getUserInfo(user_id);
-//	}
 	
- @Override
+	@Override
     public UserDTO getUserInfo(String user_id) {
         UserDAO dao = sqlSession.getMapper(UserDAO.class);
         return dao.getUserInfo(user_id);
@@ -86,6 +80,7 @@ public class UserServiceImpl implements UserService{
     	UserDAO dao = sqlSession.getMapper(UserDAO.class);
         return dao.getAllUsers(searchType, searchKeyword, sortField, sortOrder);
     }
+    
     @Override
     public void insertKakaoUser(UserDTO user) {
 	    UserDAO dao = sqlSession.getMapper(UserDAO.class);
