@@ -8,61 +8,62 @@
 <title>로그인</title>
 <style>
     body {
-        background: linear-gradient(to right, #ffffff, #dff6ff, #ffffff);
+        margin: 0;
         font-family: 'Noto Sans KR', sans-serif;
+        background-color: #f7f9fb;
         padding: 50px;
     }
 
-    h1 {
+    h2 {
         text-align: center;
         color: #5bd3ff;
         margin-bottom: 30px;
     }
 
-    .login-card {
-        width: 50%;
-        margin: auto;
-        background-color: #eef6f9;
-        padding: 30px;
-        border-radius: 15px;
-        box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    .login-box {
+        max-width: 500px;
+        margin: 0 auto;
+        background: white;
+        padding: 40px;
+        border-radius: 14px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
     }
 
     .form-group {
-        margin-bottom: 15px;
+        margin-bottom: 20px;
     }
 
-    .form-group label {
-        display: block;
-        margin-top: 15px;
+    label {
         font-weight: bold;
+        margin-bottom: 8px;
+        display: block;
         color: #333;
     }
 
-    .form-group input[type="text"],
-    .form-group input[type="password"] {
+    input[type="text"],
+    input[type="password"] {
         width: 100%;
-        padding: 10px;
-        margin-top: 5px;
+        padding: 12px;
         border: 1px solid #ccc;
         border-radius: 8px;
+        font-size: 15px;
         box-sizing: border-box;
     }
 
-    .submit-btn {
-        margin-top: 25px;
+    input[type="submit"] {
         width: 100%;
         padding: 12px;
         background-color: #5bd3ff;
         border: none;
         color: white;
         font-weight: bold;
+        font-size: 16px;
         border-radius: 8px;
         cursor: pointer;
     }
 
-    .submit-btn:hover {
-        background-color: #3cb5de;
+    input[type="submit"]:hover {
+        background-color: #28abfc;
     }
 
     .social-login {
@@ -70,74 +71,77 @@
         margin-top: 30px;
     }
 
-    .social-btn-icon {
+    .social-login p {
+        color: #666;
+        margin-bottom: 15px;
+    }
+
+    .social-btn {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 250px;
-        margin: 10px auto;
+        width: 260px;
+        margin: 8px auto;
         padding: 12px 16px;
         border-radius: 10px;
         font-weight: bold;
         font-size: 15px;
         text-decoration: none;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         transition: background 0.3s ease;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
-    .social-btn-icon img {
+    .social-btn img {
         width: 22px;
         height: 22px;
         margin-right: 10px;
     }
 
-    .kakao-btn {
+    .kakao {
         background-color: #FEE500;
         color: #3B1E1E;
         border: 1px solid #e2c600;
     }
 
-    .kakao-btn:hover {
+    .kakao:hover {
         background-color: #ffe43a;
     }
 
-    .naver-btn {
+    .naver {
         background-color: #03C75A;
         color: white;
         border: 1px solid #02b152;
     }
 
-    .naver-btn:hover {
+    .naver:hover {
         background-color: #02b152;
     }
 </style>
 </head>
 <body>
-    <h1>로그인</h1>
-    <div class="login-card">
+    <h2>로그인</h2>
+    <div class="login-box">
         <form method="post" action="login_yn">
             <div class="form-group">
                 <label for="user_id">아이디</label>
-                <input type="text" name="user_id" id="user_id">
+                <input type="text" name="user_id" id="user_id" required>
             </div>
             <div class="form-group">
                 <label for="password">비밀번호</label>
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password" required>
             </div>
-            <input type="submit" value="로그인" class="submit-btn">
+            <input type="submit" value="로그인">
         </form>
 
         <div class="social-login">
-            <p style="color: #666;">소셜 계정으로 간편 로그인</p>
+            <p>소셜 계정으로 간편 로그인</p>
 
-            <a href="${pageContext.request.contextPath}/oauth/kakao" class="social-btn-icon kakao-btn">
-                <img src="https://cdn-icons-png.flaticon.com/512/3669/3669741.png" alt="kakao">
-                카카오로 로그인
+            <a href="${pageContext.request.contextPath}/oauth/kakao" class="social-btn kakao">
+                <img src="https://cdn-icons-png.flaticon.com/512/3669/3669741.png" alt="kakao">카카오로 로그인
             </a>
 
-            <a href="${pageContext.request.contextPath}/oauth/naver" class="social-btn-icon naver-btn">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Naver_Logotype.svg" alt="naver">
-                네이버로 로그인
+            <a href="${pageContext.request.contextPath}/oauth/naver" class="social-btn naver">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Naver_Logotype.svg" alt="naver">네이버로 로그인
             </a>
         </div>
     </div>

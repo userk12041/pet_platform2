@@ -235,6 +235,7 @@ body {
 		<p><strong>이메일:</strong> ${my_info.email}</p>
 		<p><strong>닉네임:</strong> ${my_info.nickname}</p>
 		<p><strong>주소:</strong> ${my_info.address}</p>
+		<a href="${pageContext.request.contextPath}/user_info_modify" class="btn" style="display:block; margin-top:20px; text-align:center;">내 정보 수정</a>
     </div>
     <div class="right-panel">
         <div class="section">
@@ -249,17 +250,16 @@ body {
                     <th>나이</th>
                     <th>상세보기</th>
                 </tr>
-				<c:forEach var="pet" items="${pets}" varStatus="status">
-				    <tr>
-				        <td>${status.count}</td>
-				        <td>${pet.name}</td>
-				        <td>${pet.gender}</td>
-				        <td>${pet.type}</td>
-				        <td>${pet.age}</td>
-				        <td><a href="${pageContext.request.contextPath}/pet/detail/${pet.id}" class="btn">보기</a></td>
-				    </tr>
-				</c:forEach>
-
+                <c:forEach var="pet" items="${pets}" varStatus="status">
+                    <tr>
+                        <td>${status.count}</td>
+                        <td>${pet.name}</td>
+                        <td>${pet.gender}</td>
+                        <td>${pet.type}</td>
+                        <td>${pet.age}</td>
+                        <td><a href="${pageContext.request.contextPath}/pet/detail/${pet.id}" class="btn">보기</a></td>
+                    </tr>
+                </c:forEach>
             </table>
             <br>
             <a href="${pageContext.request.contextPath}/pet/register" class="btn">+ 펫 등록하기</a>
