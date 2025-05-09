@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import com.boot.dao.UserDAO;
 import com.boot.dto.UserDTO;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service("UserService")
 public class UserServiceImpl implements UserService{
 
@@ -71,6 +74,17 @@ public class UserServiceImpl implements UserService{
     public List<UserDTO> getAllUsers() {
     	UserDAO dao = sqlSession.getMapper(UserDAO.class);
         return dao.getAllUsers();
+    }
+    @Override
+    public List<UserDTO> getAllUsers(String searchType, String searchKeyword) {
+    	UserDAO dao = sqlSession.getMapper(UserDAO.class);
+        return dao.getAllUsers(searchType, searchKeyword);
+    }
+    @Override
+    public List<UserDTO> getAllUsers(String searchType, String searchKeyword, String sortField, String sortOrder) {
+        log.info("UserServiceImpl - Sort Field: {}, Sort Order: {}", sortField, sortOrder);
+    	UserDAO dao = sqlSession.getMapper(UserDAO.class);
+        return dao.getAllUsers(searchType, searchKeyword, sortField, sortOrder);
     }
     @Override
     public void insertKakaoUser(UserDTO user) {

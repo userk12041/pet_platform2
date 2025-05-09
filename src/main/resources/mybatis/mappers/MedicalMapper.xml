@@ -9,4 +9,10 @@
 		select id, pet_name, treatment_date, doctor_id, content, prescription, notes, user_id, created_at, updated_at
 		from medical
 	</select>
+	
+	<select id="selectMedicalById" parameterType="long" resultType="com.boot.dto.MedicalDTO">
+        select id, pet_name, treatment_date, doctor_id, content, prescription, notes, user_id, created_at, updated_at
+		from medical
+		where id = #{id}
+    </select>
 </mapper>

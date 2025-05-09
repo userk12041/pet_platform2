@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.boot.dto.UserDTO;
 
 public interface UserDAO {
@@ -19,4 +21,10 @@ public interface UserDAO {
     void insertKakaoUser(UserDTO user);
     //test
     public List<UserDTO> getAllUsers();
+    public List<UserDTO> getAllUsers(@Param("searchType") String searchType,
+    		@Param("searchKeyword") String searchKeyword);
+    public List<UserDTO> getAllUsers(@Param("searchType") String searchType,
+            @Param("searchKeyword") String searchKeyword,
+            @Param("sortField") String sortField,
+            @Param("sortOrder") String sortOrder);
 }

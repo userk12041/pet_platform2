@@ -6,6 +6,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Medical Records</title>
+	<style>
+	        table {
+	            width: 100%;
+	            border-collapse: collapse;
+	            margin-top: 20px;
+	        }
+	        th, td {
+	            padding: 12px;
+	            border: 1px solid #ddd;
+	            text-align: center;
+	        }
+	        th {
+	            background-color: #f2f2f2;
+	        }
+	    </style>
 </head>
 <body>
     <h1>모든 의료 기록</h1>
@@ -19,7 +34,7 @@
                 <th>진료 내용</th>
                 <th>처방 내용</th>
                 <th>비고</th>
-                <th>기록자 ID</th>
+                <th>유저 ID</th>
                 <th>생성일시</th>
                 <th>수정일시</th>
             </tr>

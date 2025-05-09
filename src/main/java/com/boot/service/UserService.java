@@ -17,7 +17,11 @@ public interface UserService {
     public int nickCheck(String nick);
 	void deleteUser(String userId);
 	void insertKakaoUser(UserDTO user);
-	//test
+	
+	//admin
 	List<UserDTO> getAllUsers();
-
+	// 검색 기능 추가
+	List<UserDTO> getAllUsers(String searchType, String searchKeyword);
+	// 정렬 기능 추가
+	List<UserDTO> getAllUsers(String searchType, String searchKeyword, String sortField, String sortOrder);
 }
