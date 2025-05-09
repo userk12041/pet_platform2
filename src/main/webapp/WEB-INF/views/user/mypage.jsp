@@ -235,7 +235,6 @@ body {
 		<p><strong>이메일:</strong> ${my_info.email}</p>
 		<p><strong>닉네임:</strong> ${my_info.nickname}</p>
 		<p><strong>주소:</strong> ${my_info.address}</p>
-		<a href="${pageContext.request.contextPath}/user_info_modify" class="btn" style="display:block; margin-top:20px; text-align:center;">내 정보 수정</a>
     </div>
     <div class="right-panel">
         <div class="section">
