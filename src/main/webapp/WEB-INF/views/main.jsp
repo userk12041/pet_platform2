@@ -256,7 +256,7 @@ video {
           <li class="header-li" onclick="location.href='mypage_info'">마이페이지</li>
           <li class="header-li" onclick="location.href='reservation'">예약 확인</li>
           <% if("admin".equals(id)) { %>
-              <li class="header-li" onclick="location.href='management'">관리자 페이지</li>
+              <li class="header-li" onclick="location.href='admin/user/list'">관리자 페이지</li>
           <% } %>
           <li class="header-li" onclick="location.href='logout'">로그아웃</li>
           <li class="header-li" onclick="location.href='support'">고객센터</li>
