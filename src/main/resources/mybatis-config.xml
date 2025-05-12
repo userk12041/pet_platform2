@@ -9,5 +9,6 @@
         <mapper resource="mybatis/mappers/UserMapper.xml"/>
         <mapper resource="mybatis/mappers/MedicalMapper.xml"/>
         <mapper resource="mybatis/mappers/MedicalReservationMapper.xml"/>
+        <mapper resource="mybatis/mappers/ReservationBeautyMapper.xml"/>
     </mappers>
 </configuration>
