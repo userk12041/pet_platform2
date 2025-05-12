@@ -44,6 +44,7 @@
         <a href="${pageContext.request.contextPath}/mypage_info">마이페이지</a>
         <a href="${pageContext.request.contextPath}/reservation">예약 확인</a>
         <a href="${pageContext.request.contextPath}/logout">로그아웃</a>
-        <a href="${pageContext.request.contextPath}/support">고객센터</a>
+        <a href="${pageContext.request.contextPath}/announce">고객센터</a>
+        <a href="${pageContext.request.contextPath}/faq">FAQ</a>
     </div>
 </div>
