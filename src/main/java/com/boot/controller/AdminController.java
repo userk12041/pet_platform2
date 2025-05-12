@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.boot.dto.BeautyDTO;
 import com.boot.dto.MedicalDTO;
+import com.boot.dto.MedicalReservationDTO;
 import com.boot.dto.UserDTO;
 import com.boot.service.*;
 import lombok.extern.slf4j.Slf4j;
@@ -87,7 +88,7 @@ public class AdminController {
 	}
 
 	@GetMapping("/medical/delete")
-	public String medicalDelete(@RequestParam("id") Long id) {
+	public String medicalDeleteById(@RequestParam("id") Long id) {
 		medicalService.deleteMedical(id);
 		return "redirect:/admin/medical/list";
 	}
@@ -100,19 +101,40 @@ public class AdminController {
 	}
 
 	@PostMapping("/reservation/beauty/approve")
-	public String approve(@RequestParam("id") Long id) {
+	public String beautyApprove(@RequestParam("id") Long id) {
 		reservationBeautyService.updateState(id,"승인");
 	    return "redirect:/admin/reservation/beauty";
 	}
 	@PostMapping("/reservation/beauty/reject")
-	public String reject(@RequestParam("id") Long id) {
+	public String beautyReject(@RequestParam("id") Long id) {
 		reservationBeautyService.updateState(id,"거절");
 	    return "redirect:/admin/reservation/beauty";
 	}
 	@PostMapping("/reservation/beauty/delete")
-	public String delete(@RequestParam("id") Long id) {
+	public String beautyDelete(@RequestParam("id") Long id) {
 		reservationBeautyService.deleteById(id);
 	    return "redirect:/admin/reservation/beauty";
 	}
 	
+	@GetMapping("/reservation/medical")
+	public String reservataionMedical(Model model) {
+		ArrayList<MedicalReservationDTO> medicalList = medicalReservationService.getReservationMedicalList();
+		model.addAttribute("reservationMedical", medicalList);
+		return "admin/reservation_medical";
+	}
+	@PostMapping("/reservation/medical/approve")
+	public String medicalApprove(@RequestParam("id") Long id) {
+		medicalReservationService.updateState(id,"승인");
+	    return "redirect:/admin/reservation/medical";
+	}
+	@PostMapping("/reservation/medical/reject")
+	public String medicalReject(@RequestParam("id") Long id) {
+		medicalReservationService.updateState(id,"거절");
+	    return "redirect:/admin/reservation/medical";
+	}
+	@PostMapping("/reservation/medical/delete")
+	public String medicalDelete(@RequestParam("id") Long id) {
+		medicalReservationService.deleteById(id);
+	    return "redirect:/admin/reservation/medical";
+	}
 }

@@ -37,15 +37,6 @@
             border: 1px solid #ccc;
             text-align: center;
         }
-        a {
-            text-decoration: none;
-        }
-		#blue{
-            color: blue;
-		}
-		#red{
-			color: red;
-		}
 
     </style>
 </head>
@@ -60,7 +51,7 @@
         <table>
             <tr>
                 <th>예약 번호</th>
-                <th>이름</th>
+                <th>펫 이름</th>
                 <th>종류</th>
                 <th>성별</th>
                 <th>나이</th>

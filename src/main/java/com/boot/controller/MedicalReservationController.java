@@ -69,10 +69,10 @@ public class MedicalReservationController {
 
         // 예약 DTO 세팅
         MedicalReservationDTO reservation = new MedicalReservationDTO();
-        reservation.setPetId(petId);
-        reservation.setUserId(userId);
-        reservation.setUserName(user.getUser_name());
-        reservation.setPhoneNumber(user.getPhone_number());
+        reservation.setPet_id(petId);
+        reservation.setUser_id(userId);
+        reservation.setUser_name(user.getUser_name());
+        reservation.setPhone_number(user.getPhone_number());
 
         reservation.setName(pet.getName());
         reservation.setType(pet.getType());
@@ -85,13 +85,13 @@ public class MedicalReservationController {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date resDate = sdf.parse(reservationDate);
-            reservation.setReservationDate(new java.sql.Date(resDate.getTime())); // ← Oracle에 맞게
+            reservation.setReservation_date(new java.sql.Date(resDate.getTime())); // ← Oracle에 맞게
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        reservation.setReservationTime(reservationTime);
-        reservation.setCreatedAt(new java.sql.Date(System.currentTimeMillis())); // 신청일시
+        reservation.setReservation_time(reservationTime);
+        reservation.setCreated_at(new java.sql.Date(System.currentTimeMillis())); // 신청일시
 
 
         // 저장

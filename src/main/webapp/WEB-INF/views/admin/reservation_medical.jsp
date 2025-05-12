@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <html>
 <head>
     <style>
@@ -35,16 +37,7 @@
             border: 1px solid #ccc;
             text-align: center;
         }
-        a {
-            text-decoration: none;
-        }
-		#blue{
-            color: blue;
-		}
-		#red{
-			color: red;
-		}
-
+		
     </style>
 </head>
 <body>
@@ -54,31 +47,56 @@
 
     <!-- 콘텐츠 -->
     <div id="content">
-        <h2>유저 목록</h2>
+        <h2>진료 예약 목록</h2>
         <table>
             <tr>
-                <th>ID</th>
-                <th>이름</th>
-                <th>이메일</th>
+                <th>예약 번호</th>
+                <th>펫 이름</th>
+                <th>종류</th>
+                <th>성별</th>
+                <th>나이</th>
+                <th>특이사항</th>
+                <th>예약날짜/시간</th>
+                <th>예약자 성명</th>
                 <th>전화번호</th>
-                <th>닉네임</th>
-                <th>수정</th>
+                <th>상태</th>
+                <th>승인/거절</th>
                 <th>삭제</th>
             </tr>
-            <c:forEach var="user" items="${userList}">
+            <c:forEach var="medi" items="${reservationMedical}">
                 <tr>
-                    <td>${user.user_id}</td>
-                    <td>${user.user_name}</td>
-                    <td>${user.email}</td>
-                    <td>${user.phone_number}</td>
-                    <td>${user.nickname}</td>
+                    <td>${medi.id}</td>
+                    <td>${medi.name}</td>
+                    <td>${medi.type}</td>
+                    <td>${medi.gender}</td>
+                    <td>${medi.age}</td>
+                    <td>${medi.note}</td>
+					<td>
+					  <fmt:formatDate value="${medi.reservation_date}" pattern="yy.MM.dd" />
+					  ${medi.reservation_time}
+					</td>
+                    <td>${medi.user_name}</td>
+                    <td>${medi.phone_number}</td>
+                    <td>${medi.state}</td>
                     <td>
-                        <a id="blue" href="${pageContext.request.contextPath}/admin/user/edit?id=${user.user_id}">수정</a>
+						<form method="post" action="${pageContext.request.contextPath}/admin/reservation/medical/approve" style="display:inline;">
+						  <input type="hidden" name="id" value="${medi.id}" />
+						  <button type="submit">승인</button>
+						</form>
+
+						<form method="post" action="${pageContext.request.contextPath}/admin/reservation/medical/reject" style="display:inline;">
+						  <input type="hidden" name="id" value="${medi.id}" />
+						  <button type="submit">거절</button>
+						</form>
+
                     </td>
-                    <td>
-                        <a id="red" href="${pageContext.request.contextPath}/admin/user/delete?id=${user.user_id}" 
-                           onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
-                    </td>
+					<td>
+						<form method="post" action="${pageContext.request.contextPath}/admin/reservation/medical/delete" style="display:inline;" 
+						      onsubmit="return confirm('정말 삭제하시겠습니까?');">
+						  <input type="hidden" name="id" value="${medi.id}" />
+						  <button type="submit">삭제</button>
+						</form>
+					</td>
                 </tr>
             </c:forEach>
         </table>

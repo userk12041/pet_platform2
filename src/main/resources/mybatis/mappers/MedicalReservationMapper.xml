@@ -23,18 +23,34 @@
             CREATED_AT
         ) VALUES (
             MEDICAL_RESERVATION_SEQ.NEXTVAL,
-            #{petId},
-            #{userId},
-            #{userName},
-            #{phoneNumber},
+            #{pet_id},
+            #{user_id},
+            #{user_name},
+            #{phone_number},
             #{name},
             #{type},
             #{gender},
             #{age},
             #{note, jdbcType=CLOB},
-            #{reservationDate, jdbcType=DATE},
-            #{reservationTime},
-            #{createdAt, jdbcType=DATE}
+            #{reservation_date, jdbcType=DATE},
+            #{reservation_time},
+            #{created_at, jdbcType=DATE}
         )
     </insert>
+    
+    <select id="getReservationMedicalList" resultType="com.boot.dto.MedicalReservationDTO">
+    	select id, pet_id, user_id, user_name, phone_number, name, type, gender, age, note,
+    			reservation_date, reservation_time, state
+    	from medical_reservation order by id desc
+    </select>
+    
+    <update id="updateState" parameterType="map">
+		update medical_reservation
+		set state = #{state}
+		where id = #{id}
+	</update>
+	
+	<delete id="deleteById">
+		delete from medical_reservation where id = #{id}
+	</delete>
 </mapper>
