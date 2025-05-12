@@ -259,7 +259,8 @@ video {
               <li class="header-li" onclick="location.href='admin/user/list'">관리자 페이지</li>
           <% } %>
           <li class="header-li" onclick="location.href='logout'">로그아웃</li>
-          <li class="header-li" onclick="location.href='support'">고객센터</li>
+          <li class="header-li" onclick="location.href='announce'">고객센터</li>
+          <li class="header-li" onclick="location.href='faq'">FAQ</li>
       </ul>                
            <% } else { %>
        <ul class="header-logo">
@@ -274,6 +275,7 @@ video {
            <li class="header-li" onclick="location.href='login'">로그인</li>
            <li class="header-li" onclick="location.href='register'">회원가입</li>
            <li class="header-li" onclick="alert('로그인이 필요합니다.')">고객센터</li>
+		   <li class="header-li" onclick="location.href='faq'">FAQ</li>
            <% } %>
        </ul>
     </div>
