@@ -21,19 +21,14 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/admin")
 public class AdminController {
 
-    private final PetServiceImpl PetService;
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private MedicalService medicalService;
 	@Autowired
-	private PetService petService;
+	private ReservationBeautyService reservationBeautyService;
 	@Autowired
 	private MedicalReservationService medicalReservationService;
-
-    AdminController(PetServiceImpl PetService) {
-        this.PetService = PetService;
-    }
 	
 	@GetMapping("/user/list")
 	public String userList(Model model) {
@@ -99,8 +94,10 @@ public class AdminController {
 	
 	@GetMapping("/reservation/beauty")
 	public String reservataionBeauty(Model model) {
-		ArrayList<BeautyDTO> beautyList = petService.getReservationBeautyList();
+		ArrayList<BeautyDTO> beautyList = reservationBeautyService.getReservationBeautyList();
 		model.addAttribute("reservationBeauty", beautyList);
 		return "admin/reservation_beauty";
 	}
+	
+	
 }

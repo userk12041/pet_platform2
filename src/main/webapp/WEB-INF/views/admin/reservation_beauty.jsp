@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <html>
 <head>
     <style>
@@ -82,17 +84,31 @@
                     <td>${beauty.weight}</td>
                     <td>${beauty.style}</td>
                     <td>${beauty.note}</td>
-                    <td>${beauty.reservation_day}${beauty.reservation_time}</td>
+					<td>
+					  <fmt:formatDate value="${beauty.reservation_day}" pattern="yy.MM.dd" />
+					  ${beauty.reservation_time}
+					</td>
                     <td>${beauty.user_name}</td>
                     <td>${beauty.user_phone}</td>
                     <td>${beauty.state}</td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/admin/reservationBeauty/approve?id=${beauty.id}">승인</a>
-                        <a href="${pageContext.request.contextPath}/admin/reservationBeauty/reject?id=${beauty.id}">거절</a>
+						<form method="post" action="${pageContext.request.contextPath}/admin/reservatio/beauty/approve" style="display:inline;">
+						  <input type="hidden" name="id" value="${beauty.id}" />
+						  <button type="submit">승인</button>
+						</form>
+
+						<form method="post" action="${pageContext.request.contextPath}/admin/reservatio/beauty/reject" style="display:inline;">
+						  <input type="hidden" name="id" value="${beauty.id}" />
+						  <button type="submit">거절</button>
+						</form>
+
                     </td>
 					<td>
-                        <a id="red" href="${pageContext.request.contextPath}/admin/reservationBeauty/delete?id=${beauty.id}" 
-                           onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+						<form method="post" action="${pageContext.request.contextPath}/admin/reservatio/beauty/delete" style="display:inline;" 
+						      onsubmit="return confirm('정말 삭제하시겠습니까?');">
+						  <input type="hidden" name="id" value="${beauty.id}" />
+						  <button type="submit">삭제</button>
+						</form>
 					</td>
                 </tr>
             </c:forEach>

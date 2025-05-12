@@ -45,7 +45,7 @@
         SELECT * FROM pet WHERE user_id = #{user_id} ORDER BY id DESC
     </select>
 
-    <!-- ✅ 미용 예약 등록 -->
+<!--     ✅ 미용 예약 등록 
 	<insert id="beautyReservation">
 	    INSERT INTO beauty_reservation
 	    (id, pet_id, name, type, gender, age, weight, style, note, reserved_at,
@@ -60,6 +60,6 @@
 		select id, pet_id, name, type, gender, age, weight, style, note,
 	     		reservation_day, reservation_time, user_name, user_phone, state
 	    from beauty_reservation order by id desc
-	</select>
+	</select>-->
 
 </mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.dao.ReservationBeautyDAO">
+
+    <!-- ✅ 미용 예약 등록 -->
+	<insert id="beautyReservation">
+	    INSERT INTO beauty_reservation
+	    (id, pet_id, name, type, gender, age, weight, style, note, reserved_at,
+	     reservation_day, reservation_time, user_name, user_phone)
+	    VALUES
+	    (beauty_reservation_seq.nextval, #{pet_id}, #{name}, #{type}, #{gender}, #{age},
+	     #{weight}, #{style}, #{note}, sysdate, #{reservation_day}, #{reservation_time},
+	     #{user_name}, #{user_phone})
+	</insert>
+	
+	<select id="getReservationBeautyList" resultType="com.boot.dto.BeautyDTO">
+		select id, pet_id, name, type, gender, age, weight, style, note,
+	     		reservation_day, reservation_time, user_name, user_phone, state
+	    from beauty_reservation order by id desc
+	</select>
+
+</mapper>

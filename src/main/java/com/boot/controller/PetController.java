@@ -21,6 +21,7 @@ import com.boot.dto.PetDTO;
 import com.boot.dto.UserDTO;
 import com.boot.service.MedicalReservationService;
 import com.boot.service.PetService;
+import com.boot.service.ReservationBeautyService;
 import com.boot.service.UserService;
 
 @Controller
@@ -35,6 +36,9 @@ public class PetController {
     
     @Autowired
     private MedicalReservationService medicalReservationService;
+    
+    @Autowired
+    private ReservationBeautyService reservationBeautyService;
 
     // 등록 폼 보기
     @GetMapping("/register")
@@ -177,7 +181,7 @@ public class PetController {
         // 신청일시 (날짜 + 시간)
         reservation.setReserved_at(new java.sql.Timestamp(System.currentTimeMillis()));
 
-        petService.beautyReservation(reservation);
+        reservationBeautyService.beautyReservation(reservation);
 
         return "redirect:/main";
     }
