@@ -1,5 +1,6 @@
 package com.boot.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -56,5 +57,11 @@ public class PetServiceImpl implements PetService {
         PetDAO dao = sqlSession.getMapper(PetDAO.class);
         dao.beautyReservation(reservation);
     }
+
+	@Override
+	public ArrayList<BeautyDTO> getReservationBeautyList() {
+		PetDAO dao = sqlSession.getMapper(PetDAO.class);
+		return dao.getReservationBeautyList();
+	}
     
 }

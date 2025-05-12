@@ -54,31 +54,46 @@
 
     <!-- 콘텐츠 -->
     <div id="content">
-        <h2>유저 목록</h2>
+        <h2>미용 예약 목록</h2>
         <table>
             <tr>
-                <th>ID</th>
+                <th>예약 번호</th>
                 <th>이름</th>
-                <th>이메일</th>
+                <th>종류</th>
+                <th>성별</th>
+                <th>나이</th>
+                <th>무게</th>
+                <th>스타일</th>
+                <th>특이사항</th>
+                <th>예약날짜/시간</th>
+                <th>예약자 성명</th>
                 <th>전화번호</th>
-                <th>닉네임</th>
-                <th>수정</th>
+                <th>상태</th>
+                <th>승인/거절</th>
                 <th>삭제</th>
             </tr>
-            <c:forEach var="user" items="${userList}">
+            <c:forEach var="beauty" items="${reservationBeauty}">
                 <tr>
-                    <td>${user.user_id}</td>
-                    <td>${user.user_name}</td>
-                    <td>${user.email}</td>
-                    <td>${user.phone_number}</td>
-                    <td>${user.nickname}</td>
+                    <td>${beauty.id}</td>
+                    <td>${beauty.name}</td>
+                    <td>${beauty.type}</td>
+                    <td>${beauty.gender}</td>
+                    <td>${beauty.age}</td>
+                    <td>${beauty.weight}</td>
+                    <td>${beauty.style}</td>
+                    <td>${beauty.note}</td>
+                    <td>${beauty.reservation_day}${beauty.reservation_time}</td>
+                    <td>${beauty.user_name}</td>
+                    <td>${beauty.user_phone}</td>
+                    <td>${beauty.state}</td>
                     <td>
-                        <a id="blue" href="${pageContext.request.contextPath}/admin/user/edit?id=${user.user_id}">수정</a>
+                        <a href="${pageContext.request.contextPath}/admin/reservationBeauty/approve?id=${beauty.id}">승인</a>
+                        <a href="${pageContext.request.contextPath}/admin/reservationBeauty/reject?id=${beauty.id}">거절</a>
                     </td>
-                    <td>
-                        <a id="red" href="${pageContext.request.contextPath}/admin/user/delete?id=${user.user_id}" 
+					<td>
+                        <a id="red" href="${pageContext.request.contextPath}/admin/reservationBeauty/delete?id=${beauty.id}" 
                            onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
-                    </td>
+					</td>
                 </tr>
             </c:forEach>
         </table>

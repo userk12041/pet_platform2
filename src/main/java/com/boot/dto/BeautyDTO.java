@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BeautyDTO {
 	private int id;
-    private int petId;
+    private int pet_id;
     private String name;
     private String type;
     private String gender;
@@ -21,10 +21,11 @@ public class BeautyDTO {
     private double weight;
     private String style;
     private String note;
-    private Timestamp reservedAt;
-    private Date reservationDay;
-    private String reservationTime;
-    private String userName;
-    private String userPhone;
+    private Timestamp reserved_at;
+    private Date reservation_day;
+    private String reservation_time;
+    private String user_name;
+    private String user_phone;
+    private String state;
 }
 

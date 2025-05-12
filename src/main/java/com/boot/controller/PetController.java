@@ -150,7 +150,7 @@ public class PetController {
         PetDTO pet = petService.getPetById(petId);
 
         BeautyDTO reservation = new BeautyDTO();
-        reservation.setPetId(petId);
+        reservation.setPet_id(petId);
         reservation.setName(pet.getName());
         reservation.setType(pet.getType());
         reservation.setGender(pet.getGender());
@@ -160,22 +160,22 @@ public class PetController {
         reservation.setNote(note);
 
         // 예약자 정보 추가
-        reservation.setUserName(userName);
-        reservation.setUserPhone(userPhone);
+        reservation.setUser_name(userName);
+        reservation.setUser_phone(userPhone);
 
         // String -> Date 변환 (예약 날짜)
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date resDay = (Date) dateFormat.parse(reservationDay);
-            reservation.setReservationDay(resDay);
+            reservation.setReservation_day(resDay);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        reservation.setReservationTime(reservationTime);
+        reservation.setReservation_time(reservationTime);
 
         // 신청일시 (날짜 + 시간)
-        reservation.setReservedAt(new java.sql.Timestamp(System.currentTimeMillis()));
+        reservation.setReserved_at(new java.sql.Timestamp(System.currentTimeMillis()));
 
         petService.beautyReservation(reservation);
 

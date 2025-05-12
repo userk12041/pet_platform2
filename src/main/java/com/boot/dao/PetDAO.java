@@ -1,5 +1,6 @@
 package com.boot.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.boot.dto.BeautyDTO;
@@ -14,4 +15,5 @@ public interface PetDAO {
     void deletePet(int id);
     List<PetDTO> getPetsByUserId(String user_id);
     void beautyReservation(BeautyDTO reservation);
+    ArrayList<BeautyDTO> getReservationBeautyList();
 }

@@ -41,15 +41,7 @@
 <body>
 <div id="container">
     <!-- 사이드바 -->
-    <div id="sidebar">
-        <h3>관리자 메뉴</h3>
-        <ul style="list-style: none; padding-left: 0;">
-            <li><a href="${pageContext.request.contextPath}/main">메인화면으로</a></li>
-            <li><a href="${pageContext.request.contextPath}/admin/user/list">유저 관리</a></li>
-            <li><a href="${pageContext.request.contextPath}/admin/reservationList">예약 관리</a></li>
-            <li><a href="${pageContext.request.contextPath}/admin/medical/list">진료 관리</a></li>
-        </ul>
-    </div>
+    <jsp:include page="/WEB-INF/views/admin/sidebar.jsp" />
 
     <!-- 콘텐츠 -->
     <div id="content">

@@ -51,9 +51,15 @@
 	    (id, pet_id, name, type, gender, age, weight, style, note, reserved_at,
 	     reservation_day, reservation_time, user_name, user_phone)
 	    VALUES
-	    (beauty_reservation_seq.nextval, #{petId}, #{name}, #{type}, #{gender}, #{age},
-	     #{weight}, #{style}, #{note}, sysdate, #{reservationDay}, #{reservationTime},
-	     #{userName}, #{userPhone})
+	    (beauty_reservation_seq.nextval, #{pet_id}, #{name}, #{type}, #{gender}, #{age},
+	     #{weight}, #{style}, #{note}, sysdate, #{reservation_day}, #{reservation_time},
+	     #{user_name}, #{user_phone})
 	</insert>
+	
+	<select id="getReservationBeautyList" resultType="com.boot.dto.BeautyDTO">
+		select id, pet_id, name, type, gender, age, weight, style, note,
+	     		reservation_day, reservation_time, user_name, user_phone, state
+	    from beauty_reservation order by id desc
+	</select>
 
 </mapper>

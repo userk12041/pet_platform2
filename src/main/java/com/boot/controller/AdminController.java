@@ -10,21 +10,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.boot.dto.BeautyDTO;
 import com.boot.dto.MedicalDTO;
 import com.boot.dto.UserDTO;
-import com.boot.service.MedicalService;
-import com.boot.service.UserService;
-
+import com.boot.service.*;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+
+    private final PetServiceImpl PetService;
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private MedicalService medicalService;
+	@Autowired
+	private PetService petService;
+	@Autowired
+	private MedicalReservationService medicalReservationService;
+
+    AdminController(PetServiceImpl PetService) {
+        this.PetService = PetService;
+    }
 	
 	@GetMapping("/user/list")
 	public String userList(Model model) {
@@ -86,5 +95,12 @@ public class AdminController {
 	public String medicalDelete(@RequestParam("id") Long id) {
 		medicalService.deleteMedical(id);
 		return "redirect:/admin/medical/list";
+	}
+	
+	@GetMapping("/reservation/beauty")
+	public String reservataionBeauty(Model model) {
+		ArrayList<BeautyDTO> beautyList = petService.getReservationBeautyList();
+		model.addAttribute("reservationBeauty", beautyList);
+		return "admin/reservation_beauty";
 	}
 }
