@@ -2,6 +2,7 @@ package com.boot.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.boot.dto.UserDTO;
 
@@ -19,4 +20,9 @@ public interface UserService {
 	
 	//admin
 	ArrayList<UserDTO> getUserList();
+	// test
+	public int getSearchCount(String field, String keyword);
+	public List<UserDTO> getPagedSearchResults(String field, String keyword, String sortField, String order, int page, int pageSize);
+	public int getTotalCount();
+	public List<UserDTO> getPagedUsersSorted(String sortField, String order, int page, int pageSize);
 }
