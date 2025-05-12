@@ -92,19 +92,19 @@
                     <td>${beauty.user_phone}</td>
                     <td>${beauty.state}</td>
                     <td>
-						<form method="post" action="${pageContext.request.contextPath}/admin/reservatio/beauty/approve" style="display:inline;">
+						<form method="post" action="${pageContext.request.contextPath}/admin/reservation/beauty/approve" style="display:inline;">
 						  <input type="hidden" name="id" value="${beauty.id}" />
 						  <button type="submit">승인</button>
 						</form>
 
-						<form method="post" action="${pageContext.request.contextPath}/admin/reservatio/beauty/reject" style="display:inline;">
+						<form method="post" action="${pageContext.request.contextPath}/admin/reservation/beauty/reject" style="display:inline;">
 						  <input type="hidden" name="id" value="${beauty.id}" />
 						  <button type="submit">거절</button>
 						</form>
 
                     </td>
 					<td>
-						<form method="post" action="${pageContext.request.contextPath}/admin/reservatio/beauty/delete" style="display:inline;" 
+						<form method="post" action="${pageContext.request.contextPath}/admin/reservation/beauty/delete" style="display:inline;" 
 						      onsubmit="return confirm('정말 삭제하시겠습니까?');">
 						  <input type="hidden" name="id" value="${beauty.id}" />
 						  <button type="submit">삭제</button>

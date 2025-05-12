@@ -21,5 +21,15 @@
 	     		reservation_day, reservation_time, user_name, user_phone, state
 	    from beauty_reservation order by id desc
 	</select>
+	
+	<update id="updateState" parameterType="map">
+		update beauty_reservation
+		set state = #{state}
+		where id = #{id}
+	</update>
+	
+	<delete id="deleteById">
+		delete from beauty_reservation where id = #{id}
+	</delete>
 
 </mapper>

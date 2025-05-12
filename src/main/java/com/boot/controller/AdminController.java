@@ -98,6 +98,21 @@ public class AdminController {
 		model.addAttribute("reservationBeauty", beautyList);
 		return "admin/reservation_beauty";
 	}
-	
+
+	@PostMapping("/reservation/beauty/approve")
+	public String approve(@RequestParam("id") Long id) {
+		reservationBeautyService.updateState(id,"승인");
+	    return "redirect:/admin/reservation/beauty";
+	}
+	@PostMapping("/reservation/beauty/reject")
+	public String reject(@RequestParam("id") Long id) {
+		reservationBeautyService.updateState(id,"거절");
+	    return "redirect:/admin/reservation/beauty";
+	}
+	@PostMapping("/reservation/beauty/delete")
+	public String delete(@RequestParam("id") Long id) {
+		reservationBeautyService.deleteById(id);
+	    return "redirect:/admin/reservation/beauty";
+	}
 	
 }
