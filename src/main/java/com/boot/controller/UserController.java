@@ -91,8 +91,8 @@ public class UserController {
     @RequestMapping("/mypage_info")
     public String myPage(HttpSession session, Model model) {
         log.info("@# myPage()");
-
         String userId = (String) session.getAttribute("id");
+        log.info("@# session id=>"+userId);
         if (userId == null || userId.equals("")) {
             return "redirect:login";
         }
@@ -101,7 +101,9 @@ public class UserController {
         List<PetDTO> pets = petService.getPetsByUserId(userId); // ✅ 펫 리스트 가져오기
 
         model.addAttribute("my_info", myInfo);
+        log.info("@# myinfo=>"+myInfo);
         model.addAttribute("pets", pets); // ✅ JSP에 전달
+        log.info("@# pets=>"+pets);
 
         return "user/mypage";
     }

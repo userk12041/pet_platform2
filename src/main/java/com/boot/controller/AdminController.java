@@ -1,6 +1,7 @@
 package com.boot.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.boot.dto.BeautyDTO;
 import com.boot.dto.MedicalDTO;
+import com.boot.dto.MedicalReservationDTO;
 import com.boot.dto.UserDTO;
 import com.boot.service.*;
 import lombok.extern.slf4j.Slf4j;
@@ -30,11 +32,49 @@ public class AdminController {
 	@Autowired
 	private MedicalReservationService medicalReservationService;
 	
+//	@GetMapping("/user/list")
+//	public String userList(Model model) {
+//		ArrayList<UserDTO> userList = userService.getUserList();
+//		model.addAttribute("userList", userList);
+//		return "admin/user_list";
+//	}
 	@GetMapping("/user/list")
-	public String userList(Model model) {
-		ArrayList<UserDTO> userList = userService.getUserList();
-		model.addAttribute("userList", userList);
-		return "admin/user_list";
+	public String userList(
+	    @RequestParam(value = "page", defaultValue = "1") int page,
+	    @RequestParam(value = "sortField", defaultValue = "user_id") String sortField,
+	    @RequestParam(value = "order", defaultValue = "asc") String order,
+	    @RequestParam(value = "searchField", required = false) String searchField,
+	    @RequestParam(value = "keyword", required = false) String keyword,
+	    Model model
+	) {
+	    int pageSize = 10;
+
+	    // 검색과 정렬에 따른 데이터 조회
+	    int totalCount = (keyword != null && !keyword.isEmpty())
+	        ? userService.getSearchCount(searchField, keyword)
+	        : userService.getTotalCount();
+
+	    List<UserDTO> userList = (keyword != null && !keyword.isEmpty())
+	        ? userService.getPagedSearchResults(searchField, keyword, sortField, order, page, pageSize)
+	        : userService.getPagedUsersSorted(sortField, order, page, pageSize);
+
+	    int totalPage = (int) Math.ceil((double) totalCount / pageSize);
+	    int pageBlock = 10;
+	    int startPage = ((page - 1) / pageBlock) * pageBlock + 1;
+	    int endPage = Math.min(startPage + pageBlock - 1, totalPage);
+
+	    model.addAttribute("userList", userList);
+	    model.addAttribute("currentPage", page);
+	    model.addAttribute("startPage", startPage);
+	    model.addAttribute("endPage", endPage);
+	    model.addAttribute("hasPrev", startPage > 1);
+	    model.addAttribute("hasNext", endPage < totalPage);
+	    model.addAttribute("sortField", sortField);
+	    model.addAttribute("order", order);
+	    model.addAttribute("searchField", searchField);
+	    model.addAttribute("keyword", keyword);
+
+	    return "admin/user_list";
 	}
 	
 	@GetMapping("/user/edit")
@@ -87,7 +127,7 @@ public class AdminController {
 	}
 
 	@GetMapping("/medical/delete")
-	public String medicalDelete(@RequestParam("id") Long id) {
+	public String medicalDeleteById(@RequestParam("id") Long id) {
 		medicalService.deleteMedical(id);
 		return "redirect:/admin/medical/list";
 	}
@@ -98,6 +138,42 @@ public class AdminController {
 		model.addAttribute("reservationBeauty", beautyList);
 		return "admin/reservation_beauty";
 	}
+
+	@PostMapping("/reservation/beauty/approve")
+	public String beautyApprove(@RequestParam("id") Long id) {
+		reservationBeautyService.updateState(id,"승인");
+	    return "redirect:/admin/reservation/beauty";
+	}
+	@PostMapping("/reservation/beauty/reject")
+	public String beautyReject(@RequestParam("id") Long id) {
+		reservationBeautyService.updateState(id,"거절");
+	    return "redirect:/admin/reservation/beauty";
+	}
+	@PostMapping("/reservation/beauty/delete")
+	public String beautyDelete(@RequestParam("id") Long id) {
+		reservationBeautyService.deleteById(id);
+	    return "redirect:/admin/reservation/beauty";
+	}
 	
-	
+	@GetMapping("/reservation/medical")
+	public String reservataionMedical(Model model) {
+		ArrayList<MedicalReservationDTO> medicalList = medicalReservationService.getReservationMedicalList();
+		model.addAttribute("reservationMedical", medicalList);
+		return "admin/reservation_medical";
+	}
+	@PostMapping("/reservation/medical/approve")
+	public String medicalApprove(@RequestParam("id") Long id) {
+		medicalReservationService.updateState(id,"승인");
+	    return "redirect:/admin/reservation/medical";
+	}
+	@PostMapping("/reservation/medical/reject")
+	public String medicalReject(@RequestParam("id") Long id) {
+		medicalReservationService.updateState(id,"거절");
+	    return "redirect:/admin/reservation/medical";
+	}
+	@PostMapping("/reservation/medical/delete")
+	public String medicalDelete(@RequestParam("id") Long id) {
+		medicalReservationService.deleteById(id);
+	    return "redirect:/admin/reservation/medical";
+	}
 }

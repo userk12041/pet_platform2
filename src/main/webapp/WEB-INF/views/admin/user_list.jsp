@@ -51,10 +51,28 @@
 <div id="container">
     <!-- 사이드바 -->
     <jsp:include page="/WEB-INF/views/admin/sidebar.jsp" />
-
+	
     <!-- 콘텐츠 -->
     <div id="content">
         <h2>유저 목록</h2>
+		<!--test-->
+		<form action="/admin/user/list" method="get">
+		    <div>
+		        <select name="searchField" class="form-select">
+		            <option value="user_id" ${searchField == 'user_id' ? 'selected' : ''}>아이디</option>
+		            <option value="user_name" ${searchField == 'user_name' ? 'selected' : ''}>이름</option>
+		        </select>
+		        <input type="text" name="keyword" value="${keyword}" class="form-control" placeholder="검색어 입력">
+		        <button class="btn btn-primary" type="submit">검색</button>&nbsp;
+			    <a href="?sortField=user_id&order=asc&searchField=${searchField}&keyword=${keyword}" class="btn btn-outline-secondary btn-sm">ID ↑</a>
+			    <a href="?sortField=user_id&order=desc&searchField=${searchField}&keyword=${keyword}" class="btn btn-outline-secondary btn-sm">ID ↓</a>
+			    <a href="?sortField=user_name&order=asc&searchField=${searchField}&keyword=${keyword}" class="btn btn-outline-secondary btn-sm">이름 ↑</a>
+			    <a href="?sortField=user_name&order=desc&searchField=${searchField}&keyword=${keyword}" class="btn btn-outline-secondary btn-sm">이름 ↓</a>
+			    <a href="?sortField=email&order=asc&searchField=${searchField}&keyword=${keyword}" class="btn btn-outline-secondary btn-sm">이메일 ↑</a>
+			    <a href="?sortField=email&order=desc&searchField=${searchField}&keyword=${keyword}" class="btn btn-outline-secondary btn-sm">이메일 ↓</a>
+		    </div>
+		</form>
+		
         <table>
             <tr>
                 <th>ID</th>

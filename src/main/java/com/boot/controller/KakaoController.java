@@ -14,11 +14,14 @@ import com.boot.service.UserService;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @Controller
 public class KakaoController {
 
@@ -112,15 +115,16 @@ public class KakaoController {
         JsonObject json = JsonParser.parseString(sb.toString()).getAsJsonObject();
         JsonObject kakaoAccount = json.getAsJsonObject("kakao_account");
         JsonObject properties = json.getAsJsonObject("properties");
-
-        // 사용자 ID = 이메일 (우선), 없으면 UUID로 대체
-        String userId;
-        if (kakaoAccount.has("email") && !kakaoAccount.get("email").isJsonNull()) {
-            userId = kakaoAccount.get("email").getAsString();
-        } else {
-            userId = UUID.randomUUID().toString() + "@kakao.local";
-        }
-
+//
+//        // 사용자 ID = 이메일 (우선), 없으면 UUID로 대체
+//        String userId;
+//        if (kakaoAccount.has("email") && !kakaoAccount.get("email").isJsonNull()) {
+//            userId = kakaoAccount.get("email").getAsString();
+//        } else {
+//            userId = UUID.randomUUID().toString() + "@kakao.local";
+//        }
+        // 이메일 사용 승인 필요 임시로 닉네임으로 대체
+        String userId = properties.has("nickname") ? properties.get("nickname").getAsString() : "카카오사용자";
         String nickname = properties.has("nickname") ? properties.get("nickname").getAsString() : "카카오사용자";
 
         // DB에 존재하는지 확인
