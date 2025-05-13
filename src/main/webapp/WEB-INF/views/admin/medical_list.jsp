@@ -25,9 +25,6 @@
         a {
             text-decoration: none;
         }
-		#blue{
-            color: blue;
-		}
 		#red{
 			color: red;
 		}
@@ -60,8 +57,7 @@
 	                <th>진료일</th>
 	                <th>진료내용</th>
 	                <th>작성/수정일</th>
-	                <th>상세보기</th>
-	                <th>수정</th>
+	                <th>상세/수정</th>
 	                <th>삭제</th>
 	            </tr>
 	            <c:forEach var="medi" items="${medicalList}">
@@ -85,9 +81,6 @@
 						<td>
 						    <a href="${pageContext.request.contextPath}/admin/medical/edit?id=${medi.id}">상세보기</a>
 						</td>
-	                    <td>
-	                        <a id="blue" href="${pageContext.request.contextPath}/admin/medical/edit?id=${medi.id}">수정</a>
-	                    </td>
 	                    <td>
 	                        <a id="red" href="${pageContext.request.contextPath}/admin/medical/delete?id=${medi.id}" 
 	                           onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>

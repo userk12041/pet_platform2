@@ -128,19 +128,17 @@
 						</td>
 	                    <td>${beauty.user_name}</td>
 	                    <td>${beauty.user_phone}</td>
-						<td><button onclick="openModal(${status.index})">상세보기</button></td>
+						<td><a href="#" onclick="openModal(${status.index})">상세</a></td>
 	                    <td>${beauty.state}</td>
 	                    <td>
 							<form method="post" action="${pageContext.request.contextPath}/admin/reservation/beauty/approve" style="display:inline;">
 							  <input type="hidden" name="id" value="${beauty.id}" />
 							  <button type="submit">승인</button>
 							</form>
-	
 							<form method="post" action="${pageContext.request.contextPath}/admin/reservation/beauty/reject" style="display:inline;">
 							  <input type="hidden" name="id" value="${beauty.id}" />
 							  <button type="submit">거절</button>
 							</form>
-	
 	                    </td>
 						<td>
 							<form method="post" action="${pageContext.request.contextPath}/admin/reservation/beauty/delete" style="display:inline;" 

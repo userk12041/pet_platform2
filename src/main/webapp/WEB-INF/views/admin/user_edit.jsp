@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
 <h2>회원 정보 수정</h2>
 
 <form action="${pageContext.request.contextPath}/admin/user/update" method="post">
