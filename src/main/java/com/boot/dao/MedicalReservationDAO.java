@@ -1,6 +1,7 @@
 package com.boot.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import com.boot.dto.MedicalReservationDTO;
@@ -10,4 +11,5 @@ public interface MedicalReservationDAO {
     ArrayList<MedicalReservationDTO> getReservationMedicalList();
 	void updateState(Map<String, Object> map);
 	void deleteById(Long id);
+	List<MedicalReservationDTO> getReservationsByUserId(String userId);
 }

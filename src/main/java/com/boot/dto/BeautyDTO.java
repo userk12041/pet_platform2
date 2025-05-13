@@ -27,5 +27,6 @@ public class BeautyDTO {
     private String user_name;
     private String user_phone;
     private String state;
+    private String status;
 }
 

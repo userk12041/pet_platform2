@@ -34,4 +34,5 @@
 		delete from medical where id = #{id}
 	</delete>
 	
+	
 </mapper>

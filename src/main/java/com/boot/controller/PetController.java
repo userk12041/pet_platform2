@@ -126,6 +126,8 @@ public class PetController {
         return "redirect:/mypage_info";
     }
     
+    
+    //미용 예약
     @GetMapping("/pet_beauty/{petId}")
     public String beautyReservationPage(@PathVariable int petId, HttpSession session, Model model) {
         PetDTO pet = petService.getPetById(petId);
@@ -170,7 +172,7 @@ public class PetController {
         // String -> Date 변환 (예약 날짜)
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date resDay = (Date) dateFormat.parse(reservationDay);
+            Date resDay = dateFormat.parse(reservationDay);
             reservation.setReservation_day(resDay);
         } catch (ParseException e) {
             e.printStackTrace();
