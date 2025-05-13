@@ -165,8 +165,6 @@ public class AdminController {
 	    log.info("@#searchFields=>"+searchFields);
 	    log.info("@#sortFields=>"+sortFields);
 	    
-//		ArrayList<MedicalDTO> MedicalList = medicalService.getMedicalList();
-//		model.addAttribute("medicalList", MedicalList);
 		return "admin/medical_list";
 	}
 	@GetMapping("/medical/write")
@@ -196,9 +194,60 @@ public class AdminController {
 	}
 	
 	@GetMapping("/reservation/beauty")
-	public String reservataionBeauty(Model model) {
-		ArrayList<BeautyDTO> beautyList = reservationBeautyService.getReservationBeautyList();
-		model.addAttribute("reservationBeauty", beautyList);
+	public String reservataionBeauty(
+		    @RequestParam(value = "page", defaultValue = "1") int page,
+		    @RequestParam(value = "sortField", defaultValue = "id") String sortField,
+		    @RequestParam(value = "order", defaultValue = "asc") String order,
+		    @RequestParam(value = "searchField", required = false) String searchField,
+		    @RequestParam(value = "keyword", required = false) String keyword,
+		    Model model
+		) {
+		int pageSize = 10;
+
+	    // 검색과 정렬에 따른 데이터 조회
+	    int totalCount = (keyword != null && !keyword.isEmpty())
+	        ? reservationBeautyService.getSearchCount(searchField, keyword)
+	        : reservationBeautyService.getTotalCount();
+	    List<BeautyDTO> BeautyList = (keyword != null && !keyword.isEmpty())
+		        ? reservationBeautyService.getPagedSearchResults(searchField, keyword, sortField, order, page, pageSize)
+		        : reservationBeautyService.getPagedUsersSorted(sortField, order, page, pageSize);
+	    
+	    int totalPage = (int) Math.ceil((double) totalCount / pageSize);
+	    int pageBlock = 10;
+	    int startPage = ((page - 1) / pageBlock) * pageBlock + 1;
+	    int endPage = Math.min(startPage + pageBlock - 1, totalPage);
+
+	    model.addAttribute("reservationBeauty", BeautyList);
+	    model.addAttribute("currentPage", page);
+	    model.addAttribute("startPage", startPage);
+	    model.addAttribute("endPage", endPage);
+	    model.addAttribute("hasPrev", startPage > 1);
+	    model.addAttribute("hasNext", endPage < totalPage);
+	    model.addAttribute("sortField", sortField);
+	    model.addAttribute("order", order);
+	    model.addAttribute("searchField", searchField);
+	    model.addAttribute("keyword", keyword);
+
+	    
+	    // 검색 필드/정렬 필드 목록 전달
+	    Map<String, String> searchFields = new LinkedHashMap<>();
+	    searchFields.put("id", "번호");
+	    searchFields.put("name", "펫 이름");
+	    searchFields.put("user_name", "예약자 이름");
+	    searchFields.put("state", "상태");
+
+	    Map<String, String> sortFields = new LinkedHashMap<>();
+	    sortFields.put("id", "번호");
+	    sortFields.put("state", "상태");
+//	    sortFields.put("reservation_dayTime", "예약날짜/시간");
+
+	    model.addAttribute("searchFields", searchFields);
+	    model.addAttribute("sortFields", sortFields);
+	    
+	    log.info("@#searchFields=>"+searchFields);
+	    log.info("@#sortFields=>"+sortFields);
+//		ArrayList<BeautyDTO> beautyList = reservationBeautyService.getReservationBeautyList();
+//		model.addAttribute("reservationBeauty", beautyList);
 		return "admin/reservation_beauty";
 	}
 	@PostMapping("/reservation/beauty/approve")
@@ -218,9 +267,60 @@ public class AdminController {
 	}
 
 	@GetMapping("/reservation/medical")
-	public String reservataionMedical(Model model) {
-		ArrayList<MedicalReservationDTO> medicalList = medicalReservationService.getReservationMedicalList();
-		model.addAttribute("reservationMedical", medicalList);
+	public String reservataionMedical(
+		    @RequestParam(value = "page", defaultValue = "1") int page,
+		    @RequestParam(value = "sortField", defaultValue = "id") String sortField,
+		    @RequestParam(value = "order", defaultValue = "asc") String order,
+		    @RequestParam(value = "searchField", required = false) String searchField,
+		    @RequestParam(value = "keyword", required = false) String keyword,
+		    Model model
+		) {
+		int pageSize = 10;
+
+	    // 검색과 정렬에 따른 데이터 조회
+	    int totalCount = (keyword != null && !keyword.isEmpty())
+	        ? medicalReservationService.getSearchCount(searchField, keyword)
+	        : medicalReservationService.getTotalCount();
+	    List<MedicalReservationDTO> MedicalList = (keyword != null && !keyword.isEmpty())
+		        ? medicalReservationService.getPagedSearchResults(searchField, keyword, sortField, order, page, pageSize)
+		        : medicalReservationService.getPagedUsersSorted(sortField, order, page, pageSize);
+	    
+	    int totalPage = (int) Math.ceil((double) totalCount / pageSize);
+	    int pageBlock = 10;
+	    int startPage = ((page - 1) / pageBlock) * pageBlock + 1;
+	    int endPage = Math.min(startPage + pageBlock - 1, totalPage);
+
+	    model.addAttribute("reservationMedical", MedicalList);
+	    model.addAttribute("currentPage", page);
+	    model.addAttribute("startPage", startPage);
+	    model.addAttribute("endPage", endPage);
+	    model.addAttribute("hasPrev", startPage > 1);
+	    model.addAttribute("hasNext", endPage < totalPage);
+	    model.addAttribute("sortField", sortField);
+	    model.addAttribute("order", order);
+	    model.addAttribute("searchField", searchField);
+	    model.addAttribute("keyword", keyword);
+
+	    
+	    // 검색 필드/정렬 필드 목록 전달
+	    Map<String, String> searchFields = new LinkedHashMap<>();
+	    searchFields.put("id", "번호");
+	    searchFields.put("name", "펫 이름");
+	    searchFields.put("user_name", "예약자 이름");
+	    searchFields.put("state", "상태");
+
+	    Map<String, String> sortFields = new LinkedHashMap<>();
+	    sortFields.put("id", "번호");
+	    sortFields.put("state", "상태");
+//	    sortFields.put("reservation_dayTime", "예약날짜/시간");
+
+	    model.addAttribute("searchFields", searchFields);
+	    model.addAttribute("sortFields", sortFields);
+	    
+	    log.info("@#searchFields=>"+searchFields);
+	    log.info("@#sortFields=>"+sortFields);
+//		ArrayList<MedicalReservationDTO> medicalList = medicalReservationService.getReservationMedicalList();
+//		model.addAttribute("reservationMedical", medicalList);
 		return "admin/reservation_medical";
 	}
 	@PostMapping("/reservation/medical/approve")

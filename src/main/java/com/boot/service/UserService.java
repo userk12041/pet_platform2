@@ -20,7 +20,7 @@ public interface UserService {
 	
 	//admin
 	ArrayList<UserDTO> getUserList();
-	// test
+	// paging
 	public int getSearchCount(String field, String keyword);
 	public List<UserDTO> getPagedSearchResults(String field, String keyword, String sortField, String order, int page, int pageSize);
 	public int getTotalCount();

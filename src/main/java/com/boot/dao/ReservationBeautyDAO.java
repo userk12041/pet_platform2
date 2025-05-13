@@ -12,4 +12,10 @@ public interface ReservationBeautyDAO {
 	void updateState(Map<String, Object> map);
 	void deleteById(Long id);
 	List<BeautyDTO> getBeautyReservationsByUserId(String userId);
+	
+	// paging
+    int getSearchCount(Map<String, Object> params);
+    List<BeautyDTO> getPagedSearchResults(Map<String, Object> params);
+    int getTotalCount();
+    List<BeautyDTO> getPagedUsersSorted(Map<String, Object> params);
 }

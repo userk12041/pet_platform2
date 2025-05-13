@@ -104,6 +104,10 @@
 	    <!-- 콘텐츠 -->
 	    <div id="content">
 	        <h2>진료 예약 목록</h2>
+			<form action="/admin/reservation/medical" method="get">
+				<!--search_sort-->
+				<jsp:include page="/WEB-INF/views/common/search_sort.jsp" />
+			</form>
 	        <table>
 	            <tr>
 	                <th>예약 번호</th>
@@ -197,6 +201,7 @@
 					</div>
 	            </c:forEach>
 	        </table>
+			<jsp:include page="/WEB-INF/views/common/paging.jsp" />
 	    </div>
 	</div>
 	<script>

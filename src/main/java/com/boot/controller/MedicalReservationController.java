@@ -25,6 +25,9 @@ import com.boot.service.ReservationBeautyService;
 import com.boot.service.UserService;
 import com.boot.utils.ReservationUtils;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 public class MedicalReservationController {
 
@@ -108,6 +111,7 @@ public class MedicalReservationController {
         List<UnifiedReservationDTO> mergedList = ReservationUtils.mergeAndSort(medicalList, beautyList);
 
         model.addAttribute("allReservations", mergedList);
+        log.info(mergedList.toString());
         return "user/reservation_list";
     }
        

@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.boot.dao.MedicalReservationDAO;
+import com.boot.dao.UserDAO;
 import com.boot.dto.MedicalReservationDTO;
+import com.boot.dto.UserDTO;
 
 @Service("MedicalReservationService")
 public class MedicalReservationServiceImpl implements MedicalReservationService {
@@ -50,4 +52,51 @@ public class MedicalReservationServiceImpl implements MedicalReservationService 
 	    MedicalReservationDAO dao = sqlSession.getMapper(MedicalReservationDAO.class);
 	    return dao.getReservationsByUserId(userId);
 	}
+	
+    // paging
+    @Override
+    public int getSearchCount(String field, String keyword) {
+    	MedicalReservationDAO dao = sqlSession.getMapper(MedicalReservationDAO.class);
+        Map<String, Object> params = new HashMap<>();
+        params.put("field", field);
+        params.put("keyword", keyword);
+        return dao.getSearchCount(params);
+    }
+    @Override
+    public List<MedicalReservationDTO> getPagedSearchResults(String field, String keyword, String sortField, String order, int page, int pageSize) {
+    	MedicalReservationDAO dao = sqlSession.getMapper(MedicalReservationDAO.class);
+        int startRow = (page - 1) * pageSize;
+        int endRow = page * pageSize;
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("field", field);
+        params.put("keyword", keyword);
+        params.put("sortField", sortField);
+        params.put("order", order);
+        params.put("startRow", startRow);
+        params.put("endRow", endRow);
+
+        return dao.getPagedSearchResults(params);
+    }
+
+    @Override
+    public int getTotalCount() {
+    	MedicalReservationDAO dao = sqlSession.getMapper(MedicalReservationDAO.class);
+        return dao.getTotalCount();
+    }
+
+    @Override
+    public List<MedicalReservationDTO> getPagedUsersSorted(String sortField, String order, int page, int pageSize) {
+    	MedicalReservationDAO dao = sqlSession.getMapper(MedicalReservationDAO.class);
+        int startRow = (page - 1) * pageSize;
+        int endRow = page * pageSize;
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("sortField", sortField);
+        params.put("order", order);
+        params.put("startRow", startRow);
+        params.put("endRow", endRow);
+
+        return dao.getPagedUsersSorted(params);
+    }
 }
