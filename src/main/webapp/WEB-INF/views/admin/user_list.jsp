@@ -8,21 +8,6 @@
             display: flex;
             min-height: 100vh;
         }
-        #sidebar {
-            width: 200px;
-            background-color: #f0f0f0;
-            padding: 15px;
-        }
-		#sidebar a {
-		    display: block;
-		    padding: 8px 0;
-		    font-weight: bold;
-		    color: #333;
-		    text-decoration: none;
-		}
-		#sidebar a:hover {
-		    color: #007bff;
-		}
         #content {
             flex-grow: 1;
             padding: 20px;

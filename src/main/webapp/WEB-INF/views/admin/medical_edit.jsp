@@ -7,11 +7,6 @@
             display: flex;
             min-height: 100vh;
         }
-        #sidebar {
-            width: 200px;
-            background-color: #f0f0f0;
-            padding: 15px;
-        }
         #content {
             flex-grow: 1;
             padding: 20px;

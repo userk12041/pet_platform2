@@ -11,6 +11,17 @@
         box-sizing: border-box;
     }
 
+	#sidebar a {
+	    display: block;
+	    padding: 8px 0;
+	    font-weight: bold;
+	    color: #333;
+	    text-decoration: none;
+	}
+	#sidebar a:hover {
+	    color: #007bff;
+	}
+
     ul.menu {
         list-style: none;
         padding-left: 0;
