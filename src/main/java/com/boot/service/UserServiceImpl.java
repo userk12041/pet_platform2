@@ -78,7 +78,7 @@ public class UserServiceImpl implements UserService{
 	}
     
     
-    // test
+    // paging
     @Override
     public int getSearchCount(String field, String keyword) {
         UserDAO dao = sqlSession.getMapper(UserDAO.class);

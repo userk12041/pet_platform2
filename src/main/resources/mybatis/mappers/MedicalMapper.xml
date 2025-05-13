@@ -34,5 +34,43 @@
 		delete from medical where id = #{id}
 	</delete>
 	
+	<!--paging-->
+	<select id="getSearchCount" parameterType="map" resultType="int">
+		SELECT COUNT(*) FROM medical
+		WHERE ${field} LIKE '%' || #{keyword} || '%'
+    </select>
+    <!-- 검색 + 정렬 + 페이징 -->
+    <select id="getPagedSearchResults" parameterType="map" resultType="com.boot.dto.MedicalDTO">
+    	<![CDATA[
+		SELECT * FROM (
+	        SELECT u.*, ROWNUM AS rn
+	        FROM (
+	            SELECT * FROM medical
+	            WHERE ${field} LIKE '%' || #{keyword} || '%'
+	            ORDER BY ${sortField} ${order}
+	        ) u
+	        WHERE ROWNUM <= #{endRow}
+	    )
+	    WHERE rn > #{startRow}
+	    ]]>
+    </select>
+    <!-- 전체 유저 수 -->
+    <select id="getTotalCount" resultType="int">
+        SELECT COUNT(*) FROM medical
+    </select>
+    <!-- 정렬 + 페이징 (검색 없이) -->
+    <select id="getPagedUsersSorted" parameterType="map" resultType="com.boot.dto.MedicalDTO">
+    <![CDATA[
+	    SELECT * FROM (
+	        SELECT u.*, ROWNUM AS rn
+	        FROM (
+	            SELECT * FROM medical
+	            ORDER BY ${sortField} ${order}
+	        ) u
+	        WHERE ROWNUM <= #{endRow}
+	    )
+	    WHERE rn > #{startRow}
+	   ]]>
+    </select>
 	
 </mapper>
