@@ -39,9 +39,8 @@
 </head>
 <body>
 	<div id="container">
-    <!-- 사이드바 -->
-    <jsp:include page="/WEB-INF/views/admin/sidebar.jsp" />
-
+	    <!-- 사이드바 -->
+	    <jsp:include page="/WEB-INF/views/admin/sidebar.jsp" />
 	    <!-- 콘텐츠 -->
 	    <div id="content">
 			<div style="display: flex; justify-content: space-between; align-items: center;">
@@ -50,6 +49,10 @@
 		            <button type="button" style="padding: 4px 20px; font-size: 16px; border-radius: 6px; cursor: pointer;">작성</button>
 		        </a>
 		    </div>
+			<form action="/admin/medical/list" method="get">
+				<!--search_sort-->
+				<jsp:include page="/WEB-INF/views/common/search_sort.jsp" />
+			</form>
 	        <table>
 	            <tr>
 					<th>번호</th>
@@ -88,6 +91,7 @@
 	                </tr>
 	            </c:forEach>
 	        </table>
+			<jsp:include page="/WEB-INF/views/common/paging.jsp" />
 	    </div>
 	</div>
 </body>
