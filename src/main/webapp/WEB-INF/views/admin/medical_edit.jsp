@@ -43,7 +43,7 @@
 		    margin-top: 24px;
 		}
 		button {
-		    padding: 10px 20px;
+		    padding: 5px 15px;
 		    font-size: 16px;
 		    border-radius: 6px;
 		    cursor: pointer;
@@ -58,7 +58,10 @@
 	    <!-- 메인 콘텐츠 -->
 	    <div id="content">
 	        <div class="form-box">
-	            <h2 style="text-align: center; margin-bottom: 20px;">진료 기록 수정</h2>
+				<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+				    <h2 id="pageTitle" style="margin: 0;">진료 기록</h2>
+				    <button type="button" id="editBtn">수정</button>
+				</div>
 	            
 	            <form id="medicalForm" method="post" action="${pageContext.request.contextPath}/admin/medical/update">
 	                <input type="hidden" name="id" value="${medical.id}" />
@@ -91,7 +94,7 @@
 						<div style="flex: 1;">
 						    <button type="button" onclick="history.back()">← 목록으로</button>
 						</div>
-				       	<button type="button" id="editBtn">수정</button>
+
 				       	<button type="submit" id="saveBtn" style="display: none;">저장</button>
 					   	<button type="button" id="cancelBtn" style="display: none;">취소</button>
 				   </div>
@@ -106,6 +109,7 @@
 	        const form = document.getElementById("medicalForm");
 			const cancelBtn = document.getElementById("cancelBtn");
 	        const inputs = form.querySelectorAll("input, textarea");
+			const title = document.getElementById("pageTitle");
 
 			const originalValues = {};
 			
@@ -121,6 +125,10 @@
 	            editBtn.style.display = "none";
 	            saveBtn.style.display = "inline-block";
 				cancelBtn.style.display = "inline-block";
+				
+				if (!title.textContent.includes("수정")) {
+	                title.textContent += " 수정";
+	            }
 	        });
 			
 			// 취소 버튼 클릭
@@ -138,6 +146,8 @@
 	            editBtn.style.display = "inline-block";
 	            saveBtn.style.display = "none";
 	            cancelBtn.style.display = "none";
+				
+				title.textContent = "진료 기록";
 	        });
 	    });
 	</script>
