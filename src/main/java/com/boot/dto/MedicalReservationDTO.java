@@ -23,5 +23,4 @@ public class MedicalReservationDTO {
     private String reservation_time; // 예약 시간
     private Date created_at;         // 생성일시 (예약 신청 시각)
     private String state;
-    private String status;
 }

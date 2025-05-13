@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.boot.dto.BeautyDTO;
 import com.boot.dto.MedicalReservationDTO;
 import com.boot.dto.PetDTO;
+import com.boot.dto.UnifiedReservationDTO;
 import com.boot.dto.UserDTO;
 import com.boot.service.MedicalReservationService;
 import com.boot.service.PetService;
 import com.boot.service.ReservationBeautyService;
 import com.boot.service.UserService;
+import com.boot.utils.ReservationUtils;
 
 @Controller
 public class MedicalReservationController {
@@ -95,16 +97,20 @@ public class MedicalReservationController {
 
     //미용,진료 예약 리스트
     @GetMapping("/reservation")
-    public String viewMyReservations(HttpSession session, Model model) {
+    public String viewAllReservations(HttpSession session, Model model) {
         String userId = (String) session.getAttribute("id");
         if (userId == null) return "redirect:/login";
 
         List<MedicalReservationDTO> medicalList = medicalReservationService.getReservationsByUserId(userId);
-        List<BeautyDTO> beautyList = reservationBeautyService.getBeautyReservationsByUserId(userId); 
+        List<BeautyDTO> beautyList = reservationBeautyService.getBeautyReservationsByUserId(userId);
 
-        model.addAttribute("medicalList", medicalList);
-        model.addAttribute("beautyList", beautyList);
-        model.addAttribute("now", new java.sql.Date(System.currentTimeMillis())); // 날짜 비교용
+        // ✅ 여기서 진료/미용을 합치고 정렬
+        List<UnifiedReservationDTO> mergedList = ReservationUtils.mergeAndSort(medicalList, beautyList);
+        System.out.println("🔍 mergedList size = " + mergedList.size());
+
+        model.addAttribute("allReservations", mergedList);
+        model.addAttribute("now", new java.sql.Date(System.currentTimeMillis()));
         return "user/reservation_list";
     }
+       
 }
