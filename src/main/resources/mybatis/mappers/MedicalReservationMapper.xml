@@ -18,7 +18,7 @@
             GENDER,
             AGE,
             NOTE,
-            RESERVATION_DATE,
+            RESERVATION_DAY,
             RESERVATION_TIME,
             CREATED_AT
         ) VALUES (
@@ -32,7 +32,7 @@
             #{gender},
             #{age},
             #{note, jdbcType=CLOB},
-            #{reservation_date, jdbcType=DATE},
+            #{reservation_day, jdbcType=DATE},
             #{reservation_time},
             #{created_at, jdbcType=DATE}
         )
@@ -40,7 +40,7 @@
     
     <select id="getReservationMedicalList" resultType="com.boot.dto.MedicalReservationDTO">
     	select id, pet_id, user_id, user_name, phone_number, name, type, gender, age, note,
-    			reservation_date, reservation_time, state
+    			reservation_day, reservation_time, state
     	from medical_reservation order by id desc
     </select>
     
@@ -53,4 +53,13 @@
 	<delete id="deleteById">
 		delete from medical_reservation where id = #{id}
 	</delete>
+	
+		<!--예약 리스트-->
+	<select id="getReservationsByUserId" parameterType="string" resultType="com.boot.dto.MedicalReservationDTO">
+	    SELECT *
+	    FROM MEDICAL_RESERVATION
+	    WHERE USER_ID = #{userId}
+	    ORDER BY RESERVATION_DAY DESC, RESERVATION_TIME DESC
+	</select>
+	
 </mapper>

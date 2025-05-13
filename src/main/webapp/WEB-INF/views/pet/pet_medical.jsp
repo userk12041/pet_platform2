@@ -169,7 +169,7 @@
         </div>
 
         <!-- 숨겨진 값 -->
-        <input type="hidden" name="reservationDate" id="selectedDay">
+        <input type="hidden" name="reservationDay" id="selectedDay">
         <input type="hidden" name="reservationTime" id="selectedTime">
         <input type="hidden" name="petId" value="${pet.id}">
     </div>

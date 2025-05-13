@@ -31,5 +31,13 @@
 	<delete id="deleteById">
 		delete from beauty_reservation where id = #{id}
 	</delete>
+	
+	<select id="getBeautyReservationsByUserId" parameterType="string" resultType="com.boot.dto.BeautyDTO">
+	    SELECT b.*
+	    FROM beauty_reservation b
+	    JOIN pet p ON b.pet_id = p.id
+	    WHERE p.user_id = #{userId}
+	    ORDER BY b.reservation_day DESC
+	</select>
 
 </mapper>

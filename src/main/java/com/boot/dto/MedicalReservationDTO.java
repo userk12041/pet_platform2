@@ -19,8 +19,9 @@ public class MedicalReservationDTO {
     private String gender;          // 펫 성별
     private int age;                // 펫 나이
     private String note;            // 특이사항
-    private Date reservation_date;   // 예약 날짜
+    private Date reservation_day;   // 예약 날짜
     private String reservation_time; // 예약 시간
     private Date created_at;         // 생성일시 (예약 신청 시각)
     private String state;
+    private String status;
 }
