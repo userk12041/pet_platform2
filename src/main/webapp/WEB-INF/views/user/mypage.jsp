@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -213,18 +213,6 @@ body {
 </style>
 </head>
 <body>
-
-<!-- ✅ 헤더 시작 -->
-<div class="header-wrapper">
-    <a href="${pageContext.request.contextPath}/main" class="logo-text">마이펫 메디컬센터</a>
-    <div class="nav-menu">
-        <a href="${pageContext.request.contextPath}/mypage_info">마이페이지</a>
-        <a href="${pageContext.request.contextPath}/reservation">예약 확인</a>
-        <a href="${pageContext.request.contextPath}/logout">로그아웃</a>
-        <a href="${pageContext.request.contextPath}/support">고객센터</a>
-    </div>
-</div>
-<!-- ✅ 헤더 끝 -->
 
 <div class="container">
     <div class="left-panel">
