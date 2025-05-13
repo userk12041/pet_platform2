@@ -128,19 +128,17 @@
 						</td>
 	                    <td>${medi.user_name}</td>
 	                    <td>${medi.phone_number}</td>
-						<td><button onclick="openModal(${status.index})">상세보기</button></td>
+						<td><a href="#" onclick="openModal(${status.index})">상세</a></td>
 	                    <td>${medi.state}</td>
 	                    <td>
 							<form method="post" action="${pageContext.request.contextPath}/admin/reservation/medical/approve" style="display:inline;">
 							  <input type="hidden" name="id" value="${medi.id}" />
 							  <button type="submit">승인</button>
 							</form>
-	
 							<form method="post" action="${pageContext.request.contextPath}/admin/reservation/medical/reject" style="display:inline;">
 							  <input type="hidden" name="id" value="${medi.id}" />
 							  <button type="submit">거절</button>
 							</form>
-	
 	                    </td>
 						<td>
 							<form method="post" action="${pageContext.request.contextPath}/admin/reservation/medical/delete" style="display:inline;" 

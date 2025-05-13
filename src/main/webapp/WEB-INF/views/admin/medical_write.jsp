@@ -1,5 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
 <html>
 <head>
     <title>진료 기록 작성</title>
