@@ -1,5 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
 <html>
 <head>
     <style>
@@ -46,6 +47,7 @@
 		}
 
     </style>
+
 </head>
 <body>
 <div id="container">
@@ -103,7 +105,7 @@
 		
 		<div>
 			<c:if test="${hasPrev}">
-				<a href="?page=${startPage - 1}&sortField=${sortField}&order=${order}&name=${name}">&lt;</a>
+				<a href="?page=${startPage - 1}&sortField=${sortField}&order=${order}&searchField=${searchField}&keyword=${keyword}">&lt;</a>
 			</c:if>
 			<c:forEach var="i" begin="${startPage}" end="${endPage}">
 				<c:choose>
@@ -111,15 +113,14 @@
 						<strong>[${i}]</strong>
 					</c:when>
 					<c:otherwise>
-						<a href="?page=${i}&sortField=${sortField}&order=${order}&name=${name}">${i}</a>
+						<a href="?page=${i}&sortField=${sortField}&order=${order}&searchField=${searchField}&keyword=${keyword}">${i}</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${hasNext}">
-				<a href="?page=${endPage + 1}&sortField=${sortField}&order=${order}&name=${name}">&gt;</a>
+				<a href="?page=${endPage + 1}&sortField=${sortField}&order=${order}&searchField=${searchField}&keyword=${keyword}">&gt;</a>
 			</c:if>
 		</div>
-    </div>
-</div>
+	</div>
 </body>
 </html>

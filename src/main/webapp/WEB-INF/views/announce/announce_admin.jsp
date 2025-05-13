@@ -7,44 +7,41 @@
     <meta charset="UTF-8">
     <title>공지사항 목록</title>
     <style>
-        body {
-            font-family: 'Noto Sans KR', sans-serif;
-            background-color: #f7f9fb;
-            margin: 0;
-        }
-
-        .table-wrapper {
-            max-width: 800px;
-            margin: 60px auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 14px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            text-align: center;
-            font-size: 26px;
-            color: #2c3e50;
-            margin-bottom: 30px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            border: 1px solid #d6eef4;
-            padding: 12px;
-            text-align: center;
-            font-size: 15px;
-        }
-
-        th {
-            background-color: #5bd3ff;
-            color: white;
-        }
+		#container {
+		    display: flex;
+		    min-height: 100vh;
+		}
+		#sidebar {
+		    width: 200px;
+		    background-color: #f0f0f0;
+		    padding: 15px;
+		}
+		#sidebar a {
+		    display: block;
+		    padding: 8px 0;
+		    font-weight: bold;
+		    color: #333;
+		    text-decoration: none;
+		}
+		#sidebar a:hover {
+		    color: #007bff;
+		}
+		#content {
+		    flex-grow: 1;
+		    padding: 20px;
+		}
+		table {
+		    width: 100%;
+		    border-collapse: collapse;
+		}
+		th, td {
+		    padding: 8px;
+		    border: 1px solid #ccc;
+		    text-align: center;
+		}
+		a {
+		    text-decoration: none;
+		}
 
         tr:nth-child(even) {
             background-color: #f2f9fc;
@@ -62,40 +59,58 @@
         a.title-link:hover {
             text-decoration: underline;
         }
+		.title-link {
+		    display: inline-block;
+		    max-width: 100%;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    white-space: nowrap;
+			text-align: left;
+		}
+
     </style>
 </head>
 <body>
 
-<div class="table-wrapper">
-    <h2>공지사항 목록</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>번호</th>
-                <th>제목</th>
-                <th>작성일</th>
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach var="dto" items="${announce}">
-                <tr>
-                    <td>${dto.id}</td>
-                    <td>
-                        <a class="title-link" href="${pageContext.request.contextPath}/announce_detail_admin?id=${dto.id}">
-                            ${dto.title}
-                        </a>
-                    </td>
-                    <td><fmt:formatDate value="${dto.created_at}" pattern="yyyy.MM.dd HH:mm"/></td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
+<div id="container">
+	<!-- 사이드바 -->
+	<jsp:include page="/WEB-INF/views/admin/sidebar.jsp" />
+	<div id="content">
+		<div style="display: flex; justify-content: space-between; align-items: center;">
+		    <h2>공지사항 목록</h2>
+			<a href="${pageContext.request.contextPath}/announce_write">
+			    <button type="button" style="padding: 4px 20px; font-size: 16px; border-radius: 6px; cursor: pointer;">작성</button>
+			</a>
+		</div>
+	    <table>
+			<colgroup>
+			    <col style="width: 10%;" />
+			    <col style="width: 65%;" />
+			    <col style="width: 25%;" />
+			</colgroup>
+	        <thead>
+	            <tr>
+	                <th>번호</th>
+	                <th>제목</th>
+	                <th>작성일</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <c:forEach var="dto" items="${announce}">
+	                <tr>
+	                    <td>${dto.id}</td>
+	                    <td style="text-align: left;">
+	                        <a class="title-link" href="${pageContext.request.contextPath}/announce_detail_admin?id=${dto.id}">
+	                            ${dto.title}
+	                        </a>
+	                    </td>
+	                    <td><fmt:formatDate value="${dto.created_at}" pattern="yyyy.MM.dd HH:mm"/></td>
+	                </tr>
+	            </c:forEach>
+	        </tbody>
+	    </table>
+	</div>
 </div>
-
-<div style="text-align: center; margin-bottom: 40px;">
-    <a href="${pageContext.request.contextPath}/announce_write">작성하기</a>
-</div>
-
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>

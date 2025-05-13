@@ -80,6 +80,7 @@
 <body>
 
 <div class="notice-wrapper">
+	
     <!-- 제목 -->
     <div class="notice-title">${announce.title}</div>
 
