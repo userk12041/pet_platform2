@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
+	<%@ include file="/WEB-INF/views/common/header.jsp" %>
     <title>예약 내역 확인</title>
     <style>
         table {
