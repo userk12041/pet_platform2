@@ -123,7 +123,7 @@
 	                    <td>${medi.name}</td>
 	                    <td>${medi.type}</td>
 						<td>
-						  <fmt:formatDate value="${medi.reservation_date}" pattern="yy.MM.dd" />
+						  <fmt:formatDate value="${medi.reservation_day}" pattern="yy.MM.dd" />
 						  ${medi.reservation_time}
 						</td>
 	                    <td>${medi.user_name}</td>
@@ -179,7 +179,7 @@
 							    <div class="info-row">
 							        <strong>예약시간:</strong>
 									<span>
-										<fmt:formatDate value="${medi.reservation_date}" pattern="yy.MM.dd" />
+										<fmt:formatDate value="${medi.reservation_day}" pattern="yy.MM.dd" />
 										${medi.reservation_time}
 									</span>
 							    </div>
