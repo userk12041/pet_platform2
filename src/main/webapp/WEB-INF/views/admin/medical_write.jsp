@@ -5,6 +5,9 @@
 <head>
     <title>진료 기록 작성</title>
     <style>
+		body{
+			margin: 0;
+		}
         #container {
             display: flex;
             min-height: 100vh;

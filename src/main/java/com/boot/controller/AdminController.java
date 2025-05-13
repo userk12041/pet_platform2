@@ -104,6 +104,7 @@ public class AdminController {
 	}
 	@PostMapping("/user/update")
 	public String userUpdate(UserDTO user) {
+		log.info(user.toString());
 		userService.updateUserInfo(user);
 		return "redirect:/admin/user/list";
 	}

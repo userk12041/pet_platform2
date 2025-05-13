@@ -7,6 +7,9 @@
     <meta charset="UTF-8">
     <title>공지사항 목록</title>
     <style>
+		body{
+			margin: 0;
+		}
 		#container {
 		    display: flex;
 		    min-height: 100vh;

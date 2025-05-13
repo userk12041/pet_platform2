@@ -5,6 +5,9 @@
 <html>
 <head>
     <style>
+		body{
+			margin: 0;
+		}
         #container {
             display: flex;
             min-height: 100vh;

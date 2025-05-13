@@ -2,49 +2,101 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <style>
-.header-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    padding: 15px 40px;
-    border-bottom: 1px solid #e0e0e0;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-}
+	.header-wrapper {
+	    display: flex;
+	    justify-content: space-between;
+	    align-items: center;
+	    padding: 0 20px;
+		background-color: white;
+	}
 
-.logo-text {
-    font-size: 20px;
-    font-weight: bold;
-    color: #2c3e50;
-    text-decoration: none;
-}
+	.header-logo,
+	.header-menu,
+	.header-user {
+	    display: flex;
+	    list-style: none;
+	    margin-right: 10px;
+	}
 
-.nav-menu {
-    display: flex;
-    gap: 25px;
-}
+	.header-user {
+	    justify-content: flex-end;
+	}
 
-.nav-menu a {
-    font-size: 14px;
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-}
+	.header-menu {
+	    justify-content: center;
+	}
 
-.nav-menu a:hover {
-    color: #5bd3ff;
-}
+	.header-logo {
+	    justify-content: flex-start;
+	}
+
+	.header-li {
+	    padding: 0px 20px;
+	    border-right: 1px solid #0000001a;
+	    font-size: 14px;
+	    cursor: pointer;
+	}
+
+	.header-li a {
+	    text-decoration: none;
+	    color: black;
+	}
+
+	.logo-li {
+	    display: flex;
+	    align-items: center;
+	    border-right: none;
+	    gap: 10px;
+	}
+
+	.logo-img {
+	    width: 35px;
+	    height: 35px;
+	    border-radius: 50%;
+	}
+
+	.logo-text {
+	    font-size: 20px;
+	    font-weight: bold;
+	    color: #2c3e50;
+	}
 </style>
 
-<div class="header-wrapper">
-    <a href="${pageContext.request.contextPath}/main" class="logo-text">마이펫 메디컬센터</a>
-    <div class="nav-menu">
-        <a href="${pageContext.request.contextPath}/mypage_info">마이페이지</a>
-        <a href="${pageContext.request.contextPath}/reservation">예약 확인</a>
-        <a href="${pageContext.request.contextPath}/logout">로그아웃</a>
-        <a href="${pageContext.request.contextPath}/announce">고객센터</a>
-        <a href="${pageContext.request.contextPath}/faq">FAQ</a>
+    <div class="header-wrapper">
+        <%
+            String id = (String)session.getAttribute("id");
+            if(id != null && !id.equals("")) {
+        %>
+        <ul class="header-logo">
+            <li class="header-li logo-li" onclick="location.href='${pageContext.request.contextPath}/main'">
+                <img src="${pageContext.request.contextPath}/resources/icons/logo.jpg" class="logo-img" alt="로고">
+                <span class="logo-text">마이펫 메디컬센터</span>
+            </li>
+        </ul>
+        <ul class="header-user">
+            <li class="header-li" onclick="location.href='${pageContext.request.contextPath}/mypage_info'">마이페이지</li>
+            <li class="header-li" onclick="location.href='${pageContext.request.contextPath}/reservation'">예약 확인</li>
+            <% if("admin".equals(id)) { %>
+                <li class="header-li" onclick="location.href='${pageContext.request.contextPath}/admin/user/list'">관리자 페이지</li>
+            <% } %>
+            <li class="header-li" onclick="location.href='${pageContext.request.contextPath}/logout'">로그아웃</li>
+            <li class="header-li" onclick="location.href='${pageContext.request.contextPath}/announce'">고객센터</li>
+            <li class="header-li" onclick="location.href='${pageContext.request.contextPath}/faq'">FAQ</li>
+        </ul>
+        <% } else { %>
+        <ul class="header-logo">
+            <li class="header-li logo-li" onclick="location.href='${pageContext.request.contextPath}/main'">
+                <img src="${pageContext.request.contextPath}/resources/icons/logo.jpg" class="logo-img" alt="로고">
+                <span class="logo-text">마이펫 메디컬센터</span>
+            </li>
+        </ul>
+        <ul class="header-user">
+            <li class="header-li" onclick="alert('로그인이 필요합니다.')">마이페이지</li>
+            <li class="header-li" onclick="alert('로그인이 필요합니다.')">예약 확인</li>
+            <li class="header-li" onclick="location.href='${pageContext.request.contextPath}/login'">로그인</li>
+            <li class="header-li" onclick="location.href='${pageContext.request.contextPath}/register'">회원가입</li>
+            <li class="header-li" onclick="alert('로그인이 필요합니다.')">고객센터</li>
+            <li class="header-li" onclick="location.href='${pageContext.request.contextPath}/faq'">FAQ</li>
+        </ul>
+        <% } %>
     </div>
-</div>
