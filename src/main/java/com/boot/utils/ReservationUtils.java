@@ -45,11 +45,11 @@ public class ReservationUtils {
         return merged;
     }
 
-    private static int statusOrder(String status) {
-        switch (status) {
-            case "예약 확정": return 0;
-            case "예약 대기": return 1;
-            default: return 2; // 지난 예약
+    private static int statusOrder(String state) {
+        switch (state) {
+            case "예약 확정": return 0;  // ✔ 변경
+            case "예약 대기": return 1;  // ✔ 변경
+            default: return 2;           // 지난 예약
         }
     }
 
@@ -66,12 +66,17 @@ public class ReservationUtils {
                 return "지난 예약";
             }
 
-            if ("승인".equals(rawState)) return "예약 확정";
-            if ("대기".equals(rawState)) return "예약 대기";
+            String cleanState = rawState != null ? rawState.trim() : "";
+            System.out.println("🧾 상태 확인: [" + cleanState + "] (길이: " + cleanState.length() + ")");
+            System.out.println("🧾 원본 상태: [" + rawState + "] (길이: " + (rawState != null ? rawState.length() : "null") + ")");
+            
+            if (cleanState.equals("승인")) return "예약 확정";  // ✅ 여기!
+            return "예약 대기";
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return "지난 예약"; // 오류 시 안전하게 지난 예약으로 처리
+        return "지난 예약"; // fallback
     }
 }

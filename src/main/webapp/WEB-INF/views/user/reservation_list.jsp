@@ -44,17 +44,14 @@
             <td><fmt:formatDate value="${res.reservationDay}" pattern="yyyy-MM-dd"/></td>
             <td>${res.reservationTime}</td>
             <td>${res.note}</td>
-            <td>
-                <c:choose>
-                    <c:when test="${res.state eq '예약 확정'}">✅ 예약 확정</c:when>
-                    <c:when test="${res.state eq '예약 대기'}">⏳ 예약 대기</c:when>
-                    <c:otherwise>
-                        <c:if test="${res.reservationDay lt now}">
-                            🕒 지난 예약
-                        </c:if>
-                    </c:otherwise>
-                </c:choose>
-            </td>
+			<td>
+			    <c:choose>
+			        <c:when test="${res.state eq '예약 확정'}">✅ 예약 확정</c:when>
+			        <c:when test="${res.state eq '예약 대기'}">⏳ 예약 대기</c:when>
+			        <c:when test="${res.state eq '지난 예약'}">🕒 지난 예약</c:when>
+			        <c:otherwise>❓ 알 수 없음</c:otherwise>
+			    </c:choose>
+			</td>
         </tr>
     </c:forEach>
 </table>

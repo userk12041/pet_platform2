@@ -106,10 +106,8 @@ public class MedicalReservationController {
 
         // ✅ 여기서 진료/미용을 합치고 정렬
         List<UnifiedReservationDTO> mergedList = ReservationUtils.mergeAndSort(medicalList, beautyList);
-        System.out.println("🔍 mergedList size = " + mergedList.size());
 
         model.addAttribute("allReservations", mergedList);
-        model.addAttribute("now", new java.sql.Date(System.currentTimeMillis()));
         return "user/reservation_list";
     }
        
