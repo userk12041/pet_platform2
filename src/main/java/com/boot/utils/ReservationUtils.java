@@ -67,8 +67,6 @@ public class ReservationUtils {
             }
 
             String cleanState = rawState != null ? rawState.trim() : "";
-            System.out.println("🧾 상태 확인: [" + cleanState + "] (길이: " + cleanState.length() + ")");
-            System.out.println("🧾 원본 상태: [" + rawState + "] (길이: " + (rawState != null ? rawState.length() : "null") + ")");
             
             if (cleanState.equals("승인")) return "예약 확정";  // ✅ 여기!
             return "예약 대기";
