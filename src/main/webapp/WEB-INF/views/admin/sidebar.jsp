@@ -75,12 +75,18 @@
         <li><a href="${pageContext.request.contextPath}/main">메인화면으로</a></li>
         <li><a href="${pageContext.request.contextPath}/admin/user/list">유저 관리</a></li>
         <li><a href="${pageContext.request.contextPath}/admin/medical/list">진료 관리</a></li>
-        <li><a href="${pageContext.request.contextPath}/announce_admin">게시판 관리</a></li>
         <li class="menu-item">
             <a href="javascript:void(0);">예약 관리</a>
             <ul class="submenu">
                 <li><a class="sub-link" href="${pageContext.request.contextPath}/admin/reservation/medical">진료 예약 관리</a></li>
                 <li><a class="sub-link" href="${pageContext.request.contextPath}/admin/reservation/beauty">미용 예약 관리</a></li>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);">게시판 관리</a>
+            <ul class="submenu">
+                <li><a class="sub-link" href="${pageContext.request.contextPath}/announce_admin">공지사항 관리</a></li>
+                <li><a class="sub-link" href="${pageContext.request.contextPath}/freeBoard">자유게시판 관리</a></li>
             </ul>
         </li>
     </ul>
