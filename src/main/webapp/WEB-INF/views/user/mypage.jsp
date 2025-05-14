@@ -188,6 +188,16 @@
 	    color: white;
 	    border-radius: 6px;
 	}
+	.left-panel .btn {
+	    display: inline-block;
+	    padding: 10px 16px;
+	    font-size: 15px;
+	    background: #5bd3ff;
+	    color: white;
+	    border-radius: 6px;
+	    text-decoration: none;
+	    margin-top: 20px;
+	}
 
 </style>
 </head>
@@ -202,7 +212,7 @@
 		<p><strong>이메일:</strong> ${my_info.email}</p>
 		<p><strong>닉네임:</strong> ${my_info.nickname}</p>
 		<p><strong>주소:</strong> ${my_info.address}</p>
-		<a href="${pageContext.request.contextPath}/user_info_modify" class="btn" style="display:block; bargin-top:20px; text-align:center;">내 정보 수정</a>
+		<a href="${pageContext.request.contextPath}/user_info_modify" class="btn" style="display:block; bmargin-top: 20px; text-align:center;">내 정보 수정</a>
     </div>
     <div class="right-panel">
         <div class="section">
