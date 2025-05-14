@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.dao.FreeboardDAO">
+
+
+<insert id="insertFreeboard" parameterType="com.boot.dto.FreeboardDTO">
+	INSERT INTO freeboard (id, title, content, writer)
+    VALUES (announce_seq.NEXTVAL, #{title}, #{content}, #{writer, jdbcType=VARCHAR})
+
+</insert>
+
+<select id ="getAllFreeboardDTO" resultType="com.boot.dto.FreeboardDTO">
+	SELECT id,title,content,created_at
+	 FROM freeboard ORDER BY ID DESC
+</select> 
+
+<select id="getFreeboardDTOById" parameterType="int" resultType="com.boot.dto.FreeboardDTO">
+	SELECT * FROM freeboard WHERE ID = #{id}
+</select>
+
+<update id="updateFreeboard" parameterType="com.boot.dto.FreeboardDTO">
+		UPDATE freeboard
+		SET title = #{title},
+			content = #{content}
+		WHERE id = #{id}
+	</update>
+	
+	<delete id ="deleteFreeboard" parameterType="int">
+		DELETE FROM freeboard WHERE id = #{id}
+	</delete>
+
+
+</mapper>

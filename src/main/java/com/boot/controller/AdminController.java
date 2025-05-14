@@ -1,6 +1,5 @@
 package com.boot.controller;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +16,11 @@ import com.boot.dto.BeautyDTO;
 import com.boot.dto.MedicalDTO;
 import com.boot.dto.MedicalReservationDTO;
 import com.boot.dto.UserDTO;
-import com.boot.service.*;
+import com.boot.service.MedicalReservationService;
+import com.boot.service.MedicalService;
+import com.boot.service.ReservationBeautyService;
+import com.boot.service.UserService;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

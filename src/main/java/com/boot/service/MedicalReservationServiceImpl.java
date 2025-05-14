@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.boot.dao.MedicalReservationDAO;
-import com.boot.dao.UserDAO;
 import com.boot.dto.MedicalReservationDTO;
-import com.boot.dto.UserDTO;
 
 @Service("MedicalReservationService")
 public class MedicalReservationServiceImpl implements MedicalReservationService {

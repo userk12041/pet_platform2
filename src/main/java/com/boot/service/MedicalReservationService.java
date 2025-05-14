@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.boot.dto.MedicalReservationDTO;
-import com.boot.dto.UserDTO;
 
 public interface MedicalReservationService {
     void insertMedicalReservation(MedicalReservationDTO reservation);

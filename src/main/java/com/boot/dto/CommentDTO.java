@@ -1,19 +1,19 @@
 package com.boot.dto;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class AnnounceDTO {
-	private int id;
-	private String title;
+public class CommentDTO {
+	private Long id;
+	private Long boardId;
+	private String user_id;
 	private String content;
-	private Date created_at;
-
-
+	private Timestamp created_at;
 }

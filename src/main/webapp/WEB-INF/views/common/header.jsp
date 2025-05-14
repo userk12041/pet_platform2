@@ -82,6 +82,7 @@
             <li class="header-li" onclick="location.href='${pageContext.request.contextPath}/logout'">로그아웃</li>
             <li class="header-li" onclick="location.href='${pageContext.request.contextPath}/announce'">고객센터</li>
             <li class="header-li" onclick="location.href='${pageContext.request.contextPath}/faq'">FAQ</li>
+            <li class="header-li" onclick="location.href='${pageContext.request.contextPath}/freeboard'">자유게시판</li>
         </ul>
         <% } else { %>
         <ul class="header-logo">
@@ -97,6 +98,7 @@
             <li class="header-li" onclick="location.href='${pageContext.request.contextPath}/register'">회원가입</li>
             <li class="header-li" onclick="alert('로그인이 필요합니다.')">고객센터</li>
             <li class="header-li" onclick="location.href='${pageContext.request.contextPath}/faq'">FAQ</li>
+            <li class="header-li" onclick="location.href='${pageContext.request.contextPath}/freeboard'">자유게시판</li>
         </ul>
         <% } %>
     </div>

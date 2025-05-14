@@ -33,5 +33,44 @@
 	<delete id ="deleteAnnounce" parameterType="int">
 		DELETE FROM announce WHERE id = #{id}
 	</delete>
+	
+	<!--paging-->
+	<select id="getSearchCount" parameterType="map" resultType="int">
+		SELECT COUNT(*) FROM announce
+		WHERE ${field} LIKE '%' || #{keyword} || '%'
+    </select>
+    <!-- 검색 + 정렬 + 페이징 -->
+    <select id="getPagedSearchResults" parameterType="map" resultType="com.boot.dto.AnnounceDTO">
+    	<![CDATA[
+		SELECT * FROM (
+	        SELECT u.*, ROWNUM AS rn
+	        FROM (
+	            SELECT * FROM announce
+	            WHERE ${field} LIKE '%' || #{keyword} || '%'
+	            ORDER BY ${sortField} ${order}
+	        ) u
+	        WHERE ROWNUM <= #{endRow}
+	    )
+	    WHERE rn > #{startRow}
+	    ]]>
+    </select>
+    <!-- 전체 유저 수 -->
+    <select id="getTotalCount" resultType="int">
+        SELECT COUNT(*) FROM announce
+    </select>
+    <!-- 정렬 + 페이징 (검색 없이) -->
+    <select id="getPagedUsersSorted" parameterType="map" resultType="com.boot.dto.AnnounceDTO">
+    <![CDATA[
+	    SELECT * FROM (
+	        SELECT u.*, ROWNUM AS rn
+	        FROM (
+	            SELECT * FROM announce
+	            ORDER BY ${sortField} ${order}
+	        ) u
+	        WHERE ROWNUM <= #{endRow}
+	    )
+	    WHERE rn > #{startRow}
+	   ]]>
+    </select>
 
 </mapper>

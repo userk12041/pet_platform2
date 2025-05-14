@@ -86,7 +86,7 @@
             <a href="javascript:void(0);">게시판 관리</a>
             <ul class="submenu">
                 <li><a class="sub-link" href="${pageContext.request.contextPath}/announce_admin">공지사항 관리</a></li>
-                <li><a class="sub-link" href="${pageContext.request.contextPath}/freeBoard">자유게시판 관리</a></li>
+                <li><a class="sub-link" href="${pageContext.request.contextPath}/freeboard">자유게시판 관리</a></li>
             </ul>
         </li>
     </ul>

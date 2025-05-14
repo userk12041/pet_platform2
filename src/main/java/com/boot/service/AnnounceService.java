@@ -12,4 +12,10 @@ public interface AnnounceService {
 	void deleteAnnounce(int id);
 	AnnounceDTO getAnnounceById(int id);
 	void updateAnnounce(AnnounceDTO announce);
+	
+	// paging
+	public int getSearchCount(String field, String keyword);
+	public List<AnnounceDTO> getPagedSearchResults(String field, String keyword, String sortField, String order, int page, int pageSize);
+	public int getTotalCount();
+	public List<AnnounceDTO> getPagedUsersSorted(String sortField, String order, int page, int pageSize);
 }

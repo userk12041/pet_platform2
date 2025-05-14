@@ -70,6 +70,10 @@
 			    <button type="button" style="padding: 4px 20px; font-size: 16px; border-radius: 6px; cursor: pointer;">작성</button>
 			</a>
 		</div>
+		<form action="/announce_admin" method="get">
+			<!--search_sort-->
+			<jsp:include page="/WEB-INF/views/common/search_sort.jsp" />
+		</form>
 	    <table>
 			<colgroup>
 			    <col style="width: 10%;" />
@@ -97,6 +101,8 @@
 	            </c:forEach>
 	        </tbody>
 	    </table>
+		<!--paging-->
+		<jsp:include page="/WEB-INF/views/common/paging.jsp" />
 	</div>
 </div>
 

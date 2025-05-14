@@ -12,5 +12,7 @@
         <mapper resource="mybatis/mappers/ReservationBeautyMapper.xml"/>
         <mapper resource="mybatis/mappers/Announce.xml"/>
         <mapper resource="mybatis/mappers/MedicalMapper.xml"/>
+        <mapper resource="mybatis/mappers/Comment.xml"/>
+        <mapper resource="mybatis/mappers/Freeboard.xml"/>
     </mappers>
 </configuration>
