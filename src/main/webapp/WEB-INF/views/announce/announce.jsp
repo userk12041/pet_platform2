@@ -68,6 +68,10 @@
 
 <div class="table-wrapper">
     <h2>공지사항 목록</h2>
+	<form action="/announce" method="get">
+		<!--search_sort-->
+		<jsp:include page="/WEB-INF/views/common/search_sort.jsp" />
+	</form>
     <table>
         <thead>
             <tr>
@@ -90,6 +94,8 @@
             </c:forEach>
         </tbody>
     </table>
+	<!--paging-->
+			<jsp:include page="/WEB-INF/views/common/paging.jsp" />
 </div>
 
 <c:if test="${sessionScope.user.role eq 'admin'}">
